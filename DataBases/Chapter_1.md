@@ -1,55 +1,55 @@
 # Review Question Chapter One
 
 ## Key Terms
-- attribute
+### attribute
 A characteristic or property of an entity
 
-- column
+### column
 A field and column is a unique order of the same data.
 
-- data file
+### data file
 A file that stores data
 
-- data independence
+### data independence
 Lets you change the DB without requiring alterations within the program(s) that accesses it.
 
-- database
+### database
 A structure that can store information about multiple types of entities, the attributes of those entities and the relationships between the entities.
 
-- database administrator
+### database administrator
 Admin that maintains the DB
 
-- database design
+### database design
 The overall design and architecture of the database as needed by the business requirements
 
-- database management system
+### database management system
 A program that allow the user to interact with the database
 
-- entity-relationship diagram (E-R)
+### entity-relationship diagram (E-R)
 A visual way to represent a database
 
-- field
+### field
 A field hold a piece of the information about an entity
 
-- form
+### form
 Screen object used to maintain, view, and print data from the database
 
-- integrity
+### integrity
 The database has integrity when the data in it satisfies all established integrity constraints
 
-- integrity constraint
+### integrity constraint
 Rule(s) that data must follow the database
 
-- one-to-many relationship
+### one-to-many relationship
 One-to-many relationships is an entity with an association to many other entities
 
-- redundancy
+### redundancy
 The duplication of data or the storing of data in one or more places
 
-- relationship
+### relationship
 Similarities between data or shared entities
 
-- security
+### security
 Unauthorized access, alterations to the database environment
 
 1. What is redundancy? What problems are associated with redundancy?
