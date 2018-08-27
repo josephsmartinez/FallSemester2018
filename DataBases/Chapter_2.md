@@ -6,7 +6,7 @@
 
 3. What is an unnormalized relation? Is it a relation according to the definition of the word relation?
 
-4. Hoe is the term attribute used in the relation model? What is a more common name for attribute?
+4. How is the term attribute used in the relation model? What is a more common name for attribute?
 
 5. Describe the shorthand representation of the structure of a relational database. Illiterate this technique by representing the database for Colonial Adventure Tours shown in Figures 1-15 through 1-19 in Chapter 1.
 
