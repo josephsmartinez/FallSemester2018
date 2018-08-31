@@ -1,6 +1,12 @@
 # Databases  
 Review Chapter Questions
 
+### My Container VM  
+http://104.131.124.147:8080/import.php
+
+User: root  
+Password: password  
+
 ## Course Objectives
 1. Be familiar with database architecture
 2. Master the design of retrieval queries
