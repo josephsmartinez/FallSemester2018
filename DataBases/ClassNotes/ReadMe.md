@@ -29,5 +29,6 @@ WHERE - filter (then filters the information)
 `customername AS cname,creditlimit,balance,creditlimit-balance AS availbalance FROM Customer;`
 - Example  
 `SELECT Street + ' ' + City + ', ' + [State] + ' ' + PostalCode AS FullAddress FROM customer;`
-
+- Example  
+`SELECT dbo.customer.CustomerName, dbo.customer.CreditLimit FROM customer`
 http://cse.unl.edu/~sscott/ShowFiles/SQL/CheatSheet/SQLCheatSheet.html

@@ -16,3 +16,23 @@ SQL Server https://www.microsoft.com/en-in/sql-server/sql-server-editions-expres
 SQL Server Express with Tools (with LocalDB, Includes the database engine and SQL Server Management Studio Express)
 
 MySQL http://www.mysql.com/
+
+
+# Connecting Docker to Run MYSQL AND PHPMYADMIN  
+### Building an Ubuntu Server on Digital Ocean
+- Video  
+https://www.youtube.com/watch?v=vqZ7eKM0WS8  
+- Walk Through  
+https://www.digitalocean.com/docs/droplets/how-to/create/
+
+### 5 Best SSH Clients for Windows
+https://activedirectorypro.com/ssh-clients-for-windows/
+
+### Docker Command Line Basics
+https://docs.docker.com/engine/reference/commandline/docker/
+
+### Docker Hub Image  
+https://hub.docker.com/r/phpmyadmin/phpmyadmin/
+
+### Linking Containers
+http://omarghader.github.io/docker-tutorial-phpmyadmin-and-mysql-server/
