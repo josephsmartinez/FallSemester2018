@@ -16,6 +16,7 @@ Each student is to create and maintain a webpage in your VirtualBox VM in which 
 ### Weekly Tasks:
 1. Create a VirtualBox VM in your own System and install the CentOS 7 Linux Distro in it.   Additional information on this task will be discussed in class.  
 <hr>
+
 2. Make your machine an operational webserver  
 - Set up and create your website on your Linux machine with the following information (server name, ip address, portal default page, etc)
   - Server Name
@@ -27,6 +28,7 @@ Each student is to create and maintain a webpage in your VirtualBox VM in which 
 - Make sure to create and maintain an activity journal and make it accessible from your portal.
 - Use your creativity to design and layout your portal.
 <hr>
+
 3. After updating your system with latest patches, configure firewall to open up port 80 to access your web site from the outside world. To do this, follow these steps:  
 - `vi /etc/sysconfig/iptables`
 - Add the following rules before the reject rule:
