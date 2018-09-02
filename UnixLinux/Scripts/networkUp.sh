@@ -1,27 +1,37 @@
 #!/usr/bin/env bash
 # Configure Networking Service and Deamon processes
+# Configure apache and open nessisary ports http & https
 
-function update(run_update) {
+
+function update() {
   #statements y or n
+  echo "Running update on system"
   yum update -y
 }
 
 function httpd() {
   #statements
+  echo "httpd"
+  yum install httpd -y 
 }
 
 function network() {
   # get networking information
+  echo "confirming networking setup"
+  
+
 }
 
 function firewall() {
   #statements
+  echo "firewall"
 }
 
-function hostname(hostname_is) {
+function hostname() {
   #statements
+  echo "hostname"
 }
 
-echo "Run update on system? >>> "
-read run_update
-update($run_update)
+network
+update
+httpd
