@@ -56,3 +56,6 @@ https://hub.docker.com/r/phpmyadmin/phpmyadmin/
 
 ### Linking Containers
 http://omarghader.github.io/docker-tutorial-phpmyadmin-and-mysql-server/
+
+Resources:  
+https://www.w3schools.com/sql/sql_and_or.asp  
