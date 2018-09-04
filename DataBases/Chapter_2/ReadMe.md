@@ -96,7 +96,7 @@ update query
 - Conditions that data must satisfy
 
 ### 10. How do you use an AND criterion to combine criteria in an Access query?
-- You can use the **comparison operaters** to create conditions.
+- You can use the **comparison operators** to create conditions.
 - You can also combine criteria to create **compound criteria** or **compound conditions**
 - **AND** or **OR**
 

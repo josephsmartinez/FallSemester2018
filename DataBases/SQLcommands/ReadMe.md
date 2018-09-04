@@ -17,30 +17,41 @@ When the record to display must satisfy the condition
 
 
 ### Compound Criteria
-AND Syntax  
+'AND' Syntax  
 ```
 SELECT column1, column2, ...
 FROM table_name
 WHERE condition1 AND condition2 AND condition3 ...;
 ```
-Example  
+Example 'AND'
 `SELECT FirstName, Address FROM Customer WHERE City='Londonderry' AND FirstName='Liam'`
 
-OR Syntax  
+<hr>
+
+'OR' Syntax  
 ```
 SELECT column1, column2, ...
 FROM table_name
 WHERE condition1 OR condition2 OR condition3 ...;
 ```
-NOT Syntax  
+Example 'OR'
+```
+SELECT FirstName, LastName, Phone FROM Customer WHERE city='Londonderry' or city='Lowell'
+```
+<hr>
+
+'NOT' Syntax  
 ```
 SELECT column1, column2, ...
 FROM table_name
 WHERE NOT condition;
 ```
+Example 'NOT'
 
 ### Organizing Data
-Order the column by
+Order the column by  
 ```
 SELECT * FROM `Customer` ORDER BY `City` ASC
 ```
+
+###
