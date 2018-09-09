@@ -76,10 +76,10 @@ Returns the total number of customers and calculates the total of the all the cu
 Reps with more than two customers having credit limits of less than $10,000
 
 10. How do you join table in SQL?
-  1. In the `SELECT` clause, list all fields to display
-  2. In the `FROM` clause, list al tables involved in the query
-  3. In the `WHERE` clause, give the condition that will restrict it to the rows that have common values in matching fields
-  - It is necessary to qualify the field name  
+- In the `SELECT` clause, list all fields to display
+- In the `FROM` clause, list al tables involved in the query
+- In the `WHERE` clause, give the condition that will restrict it to the rows that have common values in matching fields
+- It is necessary to qualify the field name  
 
 11. How do you qualify the name of a field in an SQL query? When is it necessary to do so?
 - When there is potential ambiguity in listing field name, you must qualify the fields involved.
@@ -91,9 +91,9 @@ Example: `SELECT CustomerNum, CustomerName, Rep.RepNum, LastName, FirstName FROM
 - The two table involved in a union must have the same structure  
 
 13. Describe the three update commands in SQL?
-  1. `INSERT`
-  2. `UPDATE`
-  3. `DELETE`
+- `INSERT`
+- `UPDATE`
+- `DELETE`
 
 14. How do you save the results of an SQL query as table?
 - Using the  `INTO` clause  
@@ -106,4 +106,4 @@ Example: `SELECT * INTO SmallCust FROM Customer WHERE CreditLimit <= 7500;`
 
 16. You need to delete the OrderLine table from the TAL Distributors database. Will the following command work?
 `DELETE FROM OrderLine;`
-- Yes, as mentioned within page 101. Use the `WHERE` clause to specify a condition to select the records to delete, without it, the table would be deleted. 
+- Yes, as mentioned within page 101. Use the `WHERE` clause to specify a condition to select the records to delete, without it, the table would be deleted.
