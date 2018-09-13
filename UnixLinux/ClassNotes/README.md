@@ -155,3 +155,130 @@ chmod uo+x
 ## Changing group
 `chgrp`  
 `chgrp [OPTION]... GROUP FILE...`  
+
+
+### Run levels
+0. = Halt -> Shut down system  
+```
+runlevel0.target
+poweroff.target
+```  
+1. = Single user mode -> Does not config. network interfaces, deamons, allow non-root logins  
+```
+runlevel1.target
+rescue.target
+```  
+24. = Userdefined ->
+```
+runlevel2.target
+runlevel4.target
+```  
+3. = Multiuse / mode text console
+```
+runlevel3.target
+multiuser.target
+```
+5. = Multiuse/GUI
+```
+runlevel5.target
+graphical.target
+```
+6. = Reboot
+**As of BOIS 4**  
+Emergency Mode `emergency target`  
+
+```
+0 — Halt
+1 — Single-user text mode
+2 — Not used (user-definable)
+3 — Full multi-user text mode
+4 — Not used (user-definable)
+5 — Full multi-user graphical mode (with an X-based login screen)
+6 — Reboot
+```
+
+Hard, soft, warm boot?  
+Soft vs Hard  
+Cold-Hard boot is turning off via physical switch shutdown  
+BOIS shutdown is a cold-hard boot.  
+
+### Changing Run levels
+`tellinit [run level]`  
+`init [run level]`  
+`halt` = `init 0`  
+`shutdown -h [option]`  
+`reboot` = `tellinit 6`  
+
+`systemctl isolate multiuser.target`  
+`systemctl isolate multi-user.target`  
+`systemctl isolate runlevel3.target`  
+
+Link: https://www.dynacont.net/documentation/linux/Useful_SystemD_commands/  
+### To list targets available
+`systemctl list-units --type=target`
+`/usr/lib/sysemd/system/[system targets]`
+
+### To set the current run level
+`systemctl set-default`  
+
+### To change default level
+`systemctl set-defualt [run level]`
+`systemctl set-default multiuser.target`
+
+### Job schedulers
+- Cron
+- Anacron
+
+Link: https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/6/html/deployment_guide/ch-automating_system_tasks  
+
+### Linux Initialization process
+```
+Kernel -> Starts init -> 1. runs rc sysinit 2. runs rc scripts  
+					etc/initab 	   3. Run rc local  
+-> Run scripts in /etc/rc(init level) which run script from /init.d  
+
+->  /etc/sysconfig
+```
+
+`chkconfig`
+[chkconfig](https://www.centos.org/docs/5/html/Deployment_Guide-en-US/s1-services-chkconfig.html)
+
+### In class notes
+/etc/rc3.d#  
+```
+drwxr-xr-x 97 root root 4096 Sep  1 06:10 ../
+lrwxrwxrwx  1 root root   29 May 29 23:20 K01apache-htcacheclean -> ../init.d/apache-htcacheclean
+lrwxrwxrwx  1 root root   15 May 22 10:54 S01acpid -> ../init.d/acpid*
+lrwxrwxrwx  1 root root   17 May 29 23:20 S01apache2 -> ../init.d/apache2*
+lrwxrwxrwx  1 root root   16 May 22 10:54 S01apport -> ../init.d/apport*
+lrwxrwxrwx  1 root root   13 May 22 10:54 S01atd -> ../init.d/atd*
+lrwxrwxrwx  1 root root   26 May 22 10:53 S01console-setup.sh -> ../init.d/console-setup.sh*
+lrwxrwxrwx  1 root root   14 May 22 10:53 S01cron -> ../init.d/cron*
+lrwxrwxrwx  1 root root   14 May 22 10:53 S01dbus -> ../init.d/dbus*
+lrwxrwxrwx  1 root root   16 Jun 14 16:21 S01docker -> ../init.d/docker*
+lrwxrwxrwx  1 root root   21 May 22 10:54 S01grub-common -> ../init.d/grub-common*
+lrwxrwxrwx  1 root root   20 May 22 10:54 S01irqbalance -> ../init.d/irqbalance*
+lrwxrwxrwx  1 root root   22 May 22 10:54 S01lvm2-lvmetad -> ../init.d/lvm2-lvmetad*
+lrwxrwxrwx  1 root root   23 May 22 10:54 S01lvm2-lvmpolld -> ../init.d/lvm2-lvmpolld*
+lrwxrwxrwx  1 root root   15 May 22 10:54 S01lxcfs -> ../init.d/lxcfs*
+lrwxrwxrwx  1 root root   13 May 22 10:54 S01lxd -> ../init.d/lxd*
+lrwxrwxrwx  1 root root   15 May 22 10:54 S01mdadm -> ../init.d/mdadm*
+lrwxrwxrwx  1 root root   15 May 29 23:19 S01mysql -> ../init.d/mysql*
+lrwxrwxrwx  1 root root   23 May 22 10:54 S01open-vm-tools -> ../init.d/open-vm-tools*
+lrwxrwxrwx  1 root root   18 May 22 10:54 S01plymouth -> ../init.d/plymouth*
+lrwxrwxrwx  1 root root   15 May 22 10:54 S01rsync -> ../init.d/rsync*
+lrwxrwxrwx  1 root root   17 May 22 10:53 S01rsyslog -> ../init.d/rsyslog*
+lrwxrwxrwx  1 root root   13 May 22 10:54 S01ssh -> ../init.d/ssh*
+lrwxrwxrwx  1 root root   29 May 22 10:54 S01unattended-upgrades -> ../init.d/unattended-upgrades
+lrwxrwxrwx  1 root root   15 May 22 10:54 S01uuidd -> ../init.d/uuidd*
+```
+**Notice the difference**
+```
+lrwxrwxrwx  1 root root   29 May 29 23:20 K01apache-htcacheclean -> ../init.d/apache-htcacheclean
+lrwxrwxrwx  1 root root   15 May 22 10:54 S01acpid -> ../init.d/acpid*
+																					^
+																				This is for start up and shutdown 
+```
+
+### The service command
+`service [options]` stop, start, restart, status  
