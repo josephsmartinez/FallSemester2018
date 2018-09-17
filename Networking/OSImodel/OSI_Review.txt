@@ -1,0 +1,14 @@
+What is the name of layer 2 of the OSI model?
+What is the name of layer 3 of the OSI model?
+At which layer of the OSI model is the Transport layer?
+At which layer are bits used?
+At which layer are packets used?
+At which layer are frames used?
+At which layer are segments used?
+Which of the following layers are not part of the TCP/IP model?
+Which of the following are Layer 7 protocols?
+Which Protocol Data Unit (PDU) is used at the data link layer?
+Which Protocol Data Unit (PDU) is used at the transport layer?
+Which Protocol Data Unit (PDU) is used at the network layer?
+Which layers does the TCP/IP model use?
+Which of the following are Layer 3 addresses?
