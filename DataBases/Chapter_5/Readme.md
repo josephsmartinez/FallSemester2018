@@ -141,10 +141,9 @@ PatientNum, ServiceCode → Date
 
 Revise the table like so:  
 ```
-•	Patient (PatientNum, HouseholdNum, PatientName)
-•	Household (HouseholdNum, HouseholdName, Street, City, Zip, Balance)
-•	Service (ServiceCode, Description, Fee)
-•	Appointment (PatientNum, ServiceCode, Date)
+Patient (HouseholdNum, HouseholdName, Street, City, State, PostalCode, Balance, PatientNum, PatientName)
+
+Service (PatientNum, ServiceCode, Description, Fee, Date)
 ```
 First, for each determinant that is not a candidate key, remove from the table the columns that depend on this determinant. Next, create a new table containing all the columns from the from the original table that depend on this determinant. This would be the PatientNum. Make the determinate the primary key of this new tables.  
 
@@ -179,21 +178,15 @@ CourseNum and Description refer to courses the student is taking. `Student (Stud
 
 Functional Dependencies  
 ```
-•	StudentNum → StudentName
-•	ActivityNum → ActivityName
-•	CourseNum → Description
-•	StudentNum →→ActivityNum
-•	StudentNum →→CourseNum
-
+StudentNum -> StudentName
+ActivityNum -> ActivityName
+CourseNum -> Description
 ```
 Tables  
 ```
-•	Student (StudentNum, StudentName)
-•	Activity (ActivityNum, ActivityName)
-•	Course (CourseNum, Description)
-•	StudentActivity (StudentNum, ActivityNum)
-•	StudentCourse (StudentNum, CourseNum)
-
+Student (StudentName, StudentNum)
+Activity (ActivityName, ActivityNum)
+Courses (CourseNum, Description)
 ```
 
 14. Assume the same scenario as that given in Question 13 but replace `CourseNum and Description` with `AdvisorNum, LastName, and FirstName` as shown. Advisor refers to the advisor responsible for the activity. **One advisor can be responsible for many activities but each activity has only one advisor**.  
@@ -208,7 +201,7 @@ AdvisorNum -> LastName, FirstName
 Tables  
 ```
 Student (StudentName, StudentNum)
-Activity (ActivityName, ActivityNum, AdvisorNum)
+Activity (ActivityName, ActivityNum)
 Advisors (AdvisorNum, LastName, FirstName)
 ```
 
