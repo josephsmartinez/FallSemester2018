@@ -277,8 +277,55 @@ lrwxrwxrwx  1 root root   15 May 22 10:54 S01uuidd -> ../init.d/uuidd*
 lrwxrwxrwx  1 root root   29 May 29 23:20 K01apache-htcacheclean -> ../init.d/apache-htcacheclean
 lrwxrwxrwx  1 root root   15 May 22 10:54 S01acpid -> ../init.d/acpid*
 																					^
-																				This is for start up and shutdown 
+																				This is for start up and shutdown
 ```
-
 ### The service command
 `service [options]` stop, start, restart, status  
+
+
+### System Status Information
+```
+id
+logname
+whoami
+groups
+users
+who
+who -n
+```
+The different su commands
+```
+su -
+su - [user name]
+su
+```
+### System context
+```
+date
+date newtime newtime
+uname
+hostname
+du
+du -h
+df
+df -h
+stat
+```
+### Process Status
+```
+ps
+ps -et
+top
+```
+PID (Process ID), PPID (Parent Process ID)
+init is a master control process and is assigned PPID 1 
+
+
+4096 is good size for block sizes.
+
+
+### Changing the time and date on a production server
+- Alert the logged user of the change and to save work
+- Change the system from multi mode to single user mode.
+- Revert the back to multi mode
+- Log changes
