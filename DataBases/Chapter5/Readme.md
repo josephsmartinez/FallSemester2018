@@ -35,12 +35,10 @@ update anomaly
 
 2. Give an example of a column A and a column B such that B is functionally dependent on A. Give an example of a column C and a column D such that D is not functionally dependent on C.
 
-- Question: Assume one of the policies at TAL Distributors is that all reps in any given pay class earn the same
-commission rate. How might you convey this fact to someone else?
+- Question: Assume one of the policies at TAL Distributors is that all reps in any given pay class earn the same commission rate. How might you convey this fact to someone else?
 
 - Answer: You might say, “A rep’s pay class functionally
-determines his or her commission rate” or “A rep’s commission rate functionally depends on his or her
-pay class.”
+determines his or her commission rate” or “A rep’s commission rate functionally depends on his or her pay class.”
 
 3. Define primary key.
 Column A (or a collection of columns) is the primary key for a relation (table) R, if:  
@@ -48,21 +46,14 @@ Column A (or a collection of columns) is the primary key for a relation (table) 
 - Property 2. No subcollection of the columns in A (assuming A is a collection of columns and not just a single column) also has Property 1.
 
 4. Define candidate key.
-- Like a primary key, a candidate key is a column
-or a collection of columns on which all columns in the table are functionally dependent; the definition for
-primary key also defines a candidate key.
+- Like a primary key, a candidate key is a column or a collection of columns on which all columns in the table are functionally dependent; the definition for primary key also defines a candidate key.
 
-- Example: Occasionally (but not often), there might be more than one possibility for the primary key. For example,
-if the TAL Distributors database included an Employee table to store employee numbers and Social Security
-numbers, either the employee number or the Social Security number could serve as the table’s primary key.
-In this case, both columns are referred to as candidate keys.
+- Example: Occasionally (but not often), there might be more than one possibility for the primary key. For example, if the TAL Distributors database included an Employee table to store employee numbers and Social Security numbers, either the employee number or the Social Security number could serve as the table’s primary key. In this case, both columns are referred to as candidate keys.
 
 5. Define first normal form.
 - A table (relation) is in first normal form (1NF) when it does not contain repeating groups.
 
-- A relation (table) that contains a repeating group (or multiple entries for a single record) is called an
-unnormalized relation. Removing repeating groups is the starting point in the quest to create tables that are
-as free of problems as possible.
+- A relation (table) that contains a repeating group (or multiple entries for a single record) is called an unnormalized relation. Removing repeating groups is the starting point in the quest to create tables that are as free of problems as possible.
 
 6. Define second normal form. What types of problems would you find in tables that are not in second normal form?
 
@@ -134,12 +125,12 @@ assumptions that would support those dependencies.
 - The Advisor number are unique and any given AdvisorNum is associated with the following:  
 ```
 AdvisorNum, AdvisorPhone, AdvisorOfficeNum -> AdvisorName
-```
+```  
 Unless the advisors share phonenumber and office number, all advisor fields would unique except for the name column.
 
 11. Convert the following table to an equivalent collection of tables that are in third normal form. This table contains information about patients of a dentist. Each patient belongs to a household. `Patient (HouseholdNum, HouseholdName, Street, City, State, PostalCode, Balance, PatientNum, PatientName, (ServiceCode, Description, Fee, Date))` The following dependencies exist in the
 
-Patient table:
+Patient table:  
 ```
 PatientNum → HouseholdNum, HouseholdName, Street, City, State,
 PostalCode, Balance, PatientName
@@ -148,7 +139,7 @@ ServiceCode → Description, Fee
 PatientNum, ServiceCode → Date
 ```
 
-Revise the table like so:   
+Revise the table like so:  
 ```
 Patient (HouseholdNum, HouseholdName, Street, City, State, PostalCode, Balance, PatientNum, PatientName)
 
@@ -167,7 +158,8 @@ StudentNum -> StudentName, AdvisorName, CourseNum, Term, Grade
 AdvisorNum -> AdvisorName, DeptNum, DeptName, StudentNum
 CourseNum, StudentNum -> Description, Term, Grade
 ```
-Tables
+
+Tables  
 ```
 Courses (CourseNum, Description, Term)
 Student (StudentNum, StudentName, NumCredits, AdvisorNum)
@@ -176,13 +168,13 @@ Departments (DeptNum, DeptName)
 Grades (StudentNum, CourseNum. Grade)
 ```
 
-13. Again, using your knowledge of the college environment, determine the functional or multivalued dependencies that exist in the following table. After determining the functional dependencies, convert this table to an equivalent collection of tables that are in **fourth normal** form.
+13. Again, using your knowledge of the college environment, determine the functional or multivalued dependencies that exist in the following table. After determining the functional dependencies, convert this table to an equivalent collection of tables that are in **fourth normal** form.  
 
-ActivityNum and ActivityName refer to activities in which a student can choose to participate. For example, activity number 1 might be soccer, activity 2 might be band, and activity 3 might be the debate team.
+ActivityNum and ActivityName refer to activities in which a student can choose to participate. For example, activity number 1 might be soccer, activity 2 might be band, and activity 3 might be the debate team.  
 
-A student can choose to participate in multiple activities.
+A student can choose to participate in multiple activities.  
 
-CourseNum and Description refer to courses the student is taking. `Student (StudentNum, StudentName, ActivityNum, ActivityName, CourseNum, Description)`
+CourseNum and Description refer to courses the student is taking. `Student (StudentNum, StudentName, ActivityNum, ActivityName, CourseNum, Description)`  
 
 Functional Dependencies  
 ```
@@ -190,7 +182,7 @@ StudentNum -> StudentName
 ActivityNum -> ActivityName
 CourseNum -> Description
 ```
-Tables
+Tables  
 ```
 Student (StudentName, StudentNum)
 Activity (ActivityName, ActivityNum)
@@ -198,7 +190,7 @@ Courses (CourseNum, Description)
 ```
 
 14. Assume the same scenario as that given in Question 13 but replace `CourseNum and Description` with `AdvisorNum, LastName, and FirstName` as shown. Advisor refers to the advisor responsible for the activity. **One advisor can be responsible for many activities but each activity has only one advisor**.  
-`Student (StudentNum, StudentName, ActivityNum, ActivityName, AdvisorNum, LastName, FirstName)`
+`Student (StudentNum, StudentName, ActivityNum, ActivityName, AdvisorNum, LastName, FirstName)`  
 
 Functional Dependencies  
 ```
@@ -206,7 +198,7 @@ StudentNum -> StudentName
 ActivityNum -> ActivityName
 AdvisorNum -> LastName, FirstName
 ```
-Tables
+Tables  
 ```
 Student (StudentName, StudentNum)
 Activity (ActivityName, ActivityNum)
@@ -215,7 +207,7 @@ Advisors (AdvisorNum, LastName, FirstName)
 
 15. The requirements shown in Question 11 have changed. **The dentist’s office would like to add the date of the patient’s last payment**. In which relation (table) would you place this attribute? Why?
 
-Patient table:
+Patient table:  
 ```
 PatientNum → HouseholdNum, HouseholdName, Street, City, State, LastPayment, PostalCode, Balance, PatientName
 HouseholdNum → HouseholdName, Street, City, State, PostalCode, Balance
@@ -223,7 +215,7 @@ ServiceCode → Description, Fee
 PatientNum, ServiceCode → Date
 ```
 
-Revise the table like so:   
+Revise the table like so:  
 ```
 PatientAccount (PatientNum, Balance, LastPayment)
 PatientAddress (PatientNum, HouseholdName, HouseholdNum, Street, City, State, PostalCode)
