@@ -318,7 +318,7 @@ ps -et
 top
 ```
 PID (Process ID), PPID (Parent Process ID)
-init is a master control process and is assigned PPID 1 
+init is a master control process and is assigned PPID 1
 
 
 4096 is good size for block sizes.
@@ -329,3 +329,83 @@ init is a master control process and is assigned PPID 1
 - Change the system from multi mode to single user mode.
 - Revert the back to multi mode
 - Log changes
+
+
+## File System
+
+/proc
+
+files with /proc do not take up physical memory
+
+files to look at:
+- cpuinfo
+- devices
+- pci
+- uptime
+- mount
+- vmstat
+- slabinfo
+- zoneinfo
+- meminfo
+
+The number represents the process id
+
+SE Linux
+- View the SELinux file context
+`ls -Z`
+- implements flexible mandatory access control (acl)
+- config file is within /etc/selinux/config
+- dhcp, ftp, dns, ssh, ntp, http, https, sftp, tcp, udp, etc... are subjected to SElinux protection
+```
+getsebool labelname
+getsebool -a | grep -i "FTP"
+setsebool label=[true or false]
+```
+To reset context inherited by file objects
+```
+restorecon -R [path/dir or file]
+chgcon
+setcon
+```
+[fileContext](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/6/html/security-enhanced_linux/sect-security-enhanced_linux-working_with_selinux-selinux_contexts_labeling_files)
+
+## File Systems in Unix/Linux
+Windows
+- FAT32 64
+- NTSF
+Linux
+- NTSF
+- ext 2,3,4
+
+Block Sizes
+(4096B)
+- Unix support various types of file systems at the same time (the kernel would need adjustment to support some types of file systems)
+
+Linux
+- Kernel models are Binary Files ie. Device Drivers
+- Bring the information into memory
+- XFS
+- ZFS (CnetOS7)
+- FAT32
+
+Windows
+- DLL Dynamic Linked Libraries
+
+## Preparing a Storage Device of a new drive
+Bootable Partitions (primary) (4 total)
+Secondary Partitions
+
+/boot
+/other_partitions
+
+Mount Drive
+`fdisk`
+Make file system
+`mkfs -t [type of file-system]`
+`fsck -t [types of filesystem] [devicename]`
+- mount file system
+/mnt
+`mount [options] [device] [mountpoint]`
+`umount [device name]`
+- Mount automatically
+/etc/fstab
