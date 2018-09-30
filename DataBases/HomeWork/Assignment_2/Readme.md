@@ -8,12 +8,17 @@
 ```Item (ItemNum, Description, OnHand, Category, Price, (OrderNum, OrderDate, CustomerNum, CustomerName, RepNum, LastName, FirstName, NumOrdered, QuotedPrice))
 ```
 ### Dependencies:
-```ItemNum -> Description, Category, Price, OnHand                          OrderNum -> CustomerNum, CustomerName, OrderDate                              RepNum -> LastName, Firstname      
-CustomerNum ->CustomerName                                                    ItemNum, OrderNum -> NumOrdered, QuotedPrice
+```
+ItemNum -> Description, Category, Price, OnHand
+OrderNum -> CustomerNum, CustomerName, OrderDate
+RepNum -> LastName, Firstname
+CustomerNum ->CustomerName
+ItemNum, OrderNum -> NumOrdered, QuotedPrice
 ```
 ### New Tables:
 ```Item (ItemNum, Description, OnHand, Category, Price)
-Orders(OrderNum,OrderDate)                                                    OrderLine (OrderNum, OrderDate, ItemNum, CustomerNum, QuotedPrice, NumOrdered)
+Orders(OrderNum,OrderDate)
+OrderLine (OrderNum, OrderDate, ItemNum, CustomerNum, QuotedPrice, NumOrdered)
 Customer (CustomerNum, RepNum, CustomerName)
 Rep (RepNum, LastName, FirstName)
 ```
@@ -93,3 +98,145 @@ Customer (CustomerNum, CustomerName, Street, City, State, PostalCode)
 CustomerAcct (CustomerNum, RepNum, CreditLimit, Balance)    
 RepComission (RepNum, CustomerNum, Commision)
 ```
+
+# Colonial Adventure Tours Case
+## Question 1
+1. Using the types of entities found in the Colonial Adventure Tours database (trips, guides, customers, and reservations), create an example of a table that is in first normal form but not in second normal form and an example of a table that is in second normal form but not in third normal form. In each case, justify your answers and show how to convert to the higher forms.
+
+- Step1:
+Creating an example table in the 1st normalization form, with no repeating groups:
+```
+Reservation (ReservationID, TripID, TripDate, TripName, StartLocation, Distance, MaxGrpSize, Type, Season, NumPersons, TripPrice, OtherFees, CustomerNum, LastName, FirstName, Address, City, State, PostalCode, Phone, GuideNum, GuideLastName, GuideFirstName, GuideAddress, GuideCity, GuideState, GuidePostalCode, PhoneNum, HireDate)
+```
+
+- Step2:
+Converting into the 2nd normalization form. Identifying the primary keys for each subset:
+```
+(CustomerNum,
+(ReservationID,
+(TripID,
+(GuideNum,
+````
+Regrouping the Columns as per dependencies:  
+```
+(CustomerNum, LastName, FirstName, Address, City, State, PostalCode, Phone)
+(ReservationID, TripID, TripDate, NumPersons, TripPrice, OtherFees, CustomerNum)
+(TripID, TripName, StartLocation, Distance, MaxGrpSize, Type, Season)
+(GuideNum, GuideLastName, GuideFirstName, GuideAddress, GuideCity, GuideState, GuidePostalCode, PhoneNum, HireDate)
+```
+Assigning the names for newly assigned tables and renaming the required fields:  
+```
+Customer (CustomerNum, LastName, FirstName, Address, City, State, PostalCode, Phone)
+Reservation (ReservationID, TripID, TripDate, NumPersons, TripPrice, OtherFees, CustomerNum)
+Trip (TripID, TripName, StartLocation, Distance, MaxGrpSize, Type, Season)
+Guide (GuideNum, LastName, FirstName, Address, City, State, PostalCode, PhoneNum, HireDate)
+```
+Each table is containing a primary key, with no grouping values
+
+- Step3:
+Converting to the 3rd normalization form and creating new tables and naming these tables and put the entire collection together, giving the following: Also creating a new table TripGuides, for linking between Trip and Guide tables:
+```
+Customer (CustomerNum, LastName, FirstName, Address, City, State, PostalCode, Phone)
+Reservation (ReservationID, TripID, TripDate, NumPersons, TripPrice, OtherFees, CustomerNum)
+Trip (TripID, TripName, StartLocation, Distance, MaxGrpSize, Type, Season)
+Guide (GuideNum, LastName, FirstName, Address, City, State, PostalCode, PhoneNum, HireDate)
+TripGuides (TripID, GuideNum)
+```
+
+As you see the TripGuides table the coulmns TripID, GuideNum are showing multivalued dependency hence the 4th normalization form has been achieved.
+
+## Question 2
+2. Colonial Adventure Tours is considering changing the way it handles reservations. Instead of storing the number of persons associated with one reservation, the company would like to store the name and address of each person associated with each reservation. If Colonial Adventure Tours decides to implement this change, the trip price and other fees amount for each trip would be dependent on only the trip ID. Determine the multivalued dependencies in the following table, and then convert this table to an equivalent collection of tables that are in fourth normal form.
+```
+Reservation (ReservationID, TripID, TripDate, TripPrice, OtherFees, (CustomerNum, CustomerLastName, CustomerFirstName, Address, City, State, PostalCode, Phone))
+```
+- Step1:
+Breaking the group of Columns to create 1st normalization form.
+```
+Reservation (ReservationID, TripID, TripDate, TripPrice, OtherFees, CustomerNum, CustomerLastName, CustomerFirstName, Address, City, State, PostalCode, Phone).
+```
+- Step2:
+Converting into the 2nd normalization form. Identifying the primary keys for each subset:
+```
+(ReservationID,
+ (CustomerNum,
+(TripID,
+```
+Regrouping the Columns as per dependencies:
+```
+(ReservationID, TripDate, TripPrice, OtherFees, CustomerNum, TripID)
+(CustomerNum, CustomerLastName, CustomerFirstName, Address, City, State, PostalCode, Phone)
+(TripID, CustomerNum)
+Assigning the names for the newly assigned tables, renaming the necessary fields;
+Reservation (ReservationID, TripDate, TripPrice, OtherFees, CustomerNum, TripID)
+Customer (CustomerNum, CustomerLastName, CustomerFirstName, Address, City, State, PostalCode, Phone)
+CustomerTrip (TripID, CustomerNum)
+```
+- Step3:
+Converting to the 3rd normalization form and creating new tables and naming these tables and put the entire collection together, giving the following:
+```
+Reservation (ReservationID, TripDate, TripPrice, OtherFees, CustomerNum, TripID)
+Customer (CustomerNum, CustomerLastName, CustomerFirstName, Address, City, State, PostalCode, Phone)
+CustomerTrip (TripID, CustomerNum)
+```
+As we can see the above tables were already in 4th normal form; CustomerTrip is containing multivalued columns, both are satisfying multivalued dependency. Hence we can say that, the 4th normalization has been achieved.
+
+## Question 3
+3. Identify the functional dependencies in the following un-normalized table. Convert the table to third normal form. Is the result also in fourth normal form? Why or why not?
+```
+Trip (TripID, TripName, StateAbbreviation, StateName, (GuideNum, GuideLast, GuideFirst))
+```
+- Step1:
+Breaking the group of Columns to create 1st normalization form.
+```
+Trip (TripID, TripName, StateAbbreviation, StateName, GuideNum, GuideLast, GuideFirst)
+```
+- Step2:
+Converting into the 2nd normalization form. Identifying the primary keys for each subset:
+```
+(TripID,
+(GuideNum,
+```
+Regrouping the Columns as per dependencies:
+```
+(TripID, TripName, StateAbbreviation, StateName)
+(GuideNum, GuideLast, GuideFirst)
+```
+Assigning the names for the newly assigned tables, renaming the necessary fields:
+```
+Trip (TripID, TripName, StateAbbreviation, StateName)
+Guide (GuideNum, GuideLast, GuideFirst)
+```
+- Step3:
+Converting to the 3rd normalization form and creating new tables and naming these tables and put the entire collection together, giving the following: Also creating a new table called TripGuides for linking between Trip and Guide tables:
+```
+Trip (TripID, TripName, StateAbbreviation, StateName)
+Guide (GuideNum, GuideLast, GuideFirst)
+TripGuide (TripID, GuideNum)
+```
+Dependencies are:
+```
+TripGuide.TripID -> Trip.TripID
+TripGuide.GuideNum -> Guide.GuideNum
+Trip table:
+TripID -> TripName
+Guide table:
+GuideNum -> (GuideLast, GuideFirst)
+```
+After converting into the 3rd normalization form the result will also satisfy the 4th normalization form’s rule of multivalued dependency. The columns TripID and GuideNum are dependent with the other tables. However, their occurrences were not the same in two tuples. Hence we can say that the end result of the 3rd normalization form is also in the 4th normalization form.
+
+## Question 4
+4.	Currently, each trip is identified with only season. For example, the Arethusa Falls trip is offered only in the Summer season. Colonial Adventure Tours is considering offering the same trip in more than one season; that is, the Arethusa Falls trip could be offered in both the Summer and Late Spring seasons. Using this new information, identify all dependencies and convert the current Trip table to third normal form. You may need to make some assumptions. Identify these assumptions in your solution.
+We have the functional dependency notation:
+```
+(TripID -> TripName, StartLocation, State, Distance, MaxGrpSize, Type)
+(SeasonNum -> Season)
+Second Anomolies resolved: (SeasonNum, TripID)
+```
+And the relation list is as follow:
+```
+Trip (TripID, TripName, StartLocation, State, Distance, MaxGrpSize, Type)
+Season (SeasonNum, Season)
+TripSeason (SeasonNum, TripID)
+```
+Assumptions: In the above relations only the values of the TripID and Season would be repeated to show all of the seasons which the trip is organized. This is compulsory redundancy. Table TripSeason contains foreign keys SeasonNum and TripID for maintaining the many to many relationships with the table Trip. As a trip could be more than one season as well as it is assumed that there could be more than one trip organized in a season.
