@@ -240,3 +240,111 @@ Season (SeasonNum, Season)
 TripSeason (SeasonNum, TripID)
 ```
 Assumptions: In the above relations only the values of the TripID and Season would be repeated to show all of the seasons which the trip is organized. This is compulsory redundancy. Table TripSeason contains foreign keys SeasonNum and TripID for maintaining the many to many relationships with the table Trip. As a trip could be more than one season as well as it is assumed that there could be more than one trip organized in a season.
+
+# Solmaris Condominium Group Case
+## Question 1
+1. Using the types of entities found in the Solmaris Condominium Group database (condo locations, owners, condo units, service categories, and service requests), create an example of a table that is in first normal form but not in second normal form and an example of a table that is in second normal form but not in third normal form. In each case, justify your answer and show how to convert to the higher forms.
+```
+ServiceID	CondoID	CategoryNum	Description	Status	 EstHrs	SpentHrs NextServiceDate
+1	        2	      1	          Plumbing	  Done   	 4	      4	       Nil
+1	        2	      2	          Heating/AC	Running	 3	      2	       10-16-2015
+2	        5	      6	          Janitorial	Not Done 1	      0	       10-19-2015
+3	        4	      4	          Electrical	Running	 2	      1	       10-16-2015
+3	        4	      5	          Carpentry	  Running	 4	      3	       10-19-2015
+4	        1	      1	          Plumbing	  Done	   5	      5	       Nil
+5	        2	      2	          Heating/AC	Not Done 3	      0      	10-19-2015
+```
+The table above is in 1st normal form. Because there are two repeated values in the primary key ServiceID, the primary key must be a composite key of two attributes: ServiceID and CategoryNum.   
+
+2nd normal form
+A table is in the second normal form when it is in first normal form and there is only one determinant in the table. In the table above, the determinants are: ServiceID, and CategoryNum. So, the table must be decomposed into two:  
+```
+CategoryNum	Description	Status	 EstHrs	SpentHrs	NextServiceDate
+1	          Plumbing	  Done	    4	      4	        Nil
+2	          Heating/AC	Running	  3	      2	        10-16-2015
+6	          Janitorial	Not Done	1	      0	        10-19-2015
+4	          Electrical	Running	  2	      1        	10-16-2015
+5	          Carpentry	  Running	  4	      3	        10-19-2015
+1	          Plumbing	  Done	    5	      5       	Nil
+2	          Heating/AC	Not Done	3	      0	        10-19-2015
+```
+```
+ServiceID	CondoID	CategoryNum
+1	        2	      1
+1	        2     	2
+2	        5	      6
+3	        4	      4
+3	        4	      5
+4	        1	      1
+5	        2     	2
+```
+## Question 2
+2. Determine the functional dependencies that exist in the following table, and then convert this table to an equivalent collection of tables that are in third normal form:  
+`Location (LocationNum, LocationName, (UnitNum, SqrFt, Bdrms, Baths, CondoFee))`
+These are the dependencies that exist in the table:  
+```
+LocationNum -> LocationName
+UnitNum -> SqrFt, Bdrms, Baths
+LocationNum, UnitNum -> CondoFee
+```
+After decomposing the table, there should be no functional dependencies so each one is in its third normal form. It is assumed that the condo fee is according to the location as well as units.
+```
+Location (LocationNum, LocationName)
+Unit (SqrFt, Bdrms, Baths)
+FeeAcLocationAndUnit (LocationNum, UnitNum, CondoFee)
+```
+## Question 3
+3. Determine the functional dependencies that exist in the following table, and then convert this table to an equivalent collection of tables that are in third normal form:  
+```
+CondoUnit (CondoID, LocationNum, UnitNum, SqrFt, Bdrms, Baths,
+CondoFee, OwnerNum, LastName, FirstName)
+```
+These are the dependencies that exist in the table:  
+```
+OwnerNum -> LastName, FirstName
+UnitNum -> SqrFt, Bdrms, Baths
+LocationNum, UnitNum, CondoID -> CondoFee
+```
+After decomposing the table, there should be no functional dependencies so each one is in its third normal form. It is assumed that the condo fee is according to the location as well as unit. Each unit has an owner and there could be the same owner for more than one unit.
+```
+Owner (OwnerNum, LastName, FirstName)
+Unit (SqrFt, Bdrms, Baths)
+FeeAcLocationAndUnit (CondoID, LocationNum, UnitNum, CondoFee, OwnerNum)
+```
+## Question 4
+4. Solmaris is considering adding tenant information to the database. A tenant is the person occupying a condo; this person may or may not be the condo’s owner. Determine the functional dependencies that exist in the following table, and then convert this table to an equivalent collection of tables that are in third normal form:
+```
+CondoUnit (CondoID, LocationNum, UnitNum, SqrFt, Bdrms, Baths,
+CondoFee, OwnerNum, OwLastName, OwFirstName, TenantNum,
+TnLastName, TnFirstName)
+```
+These are the dependencies that exist in the table:
+```
+OwnerNum -> OwLastName, OwFirstName
+TenantNum -> TnLastName, TnFirstName
+UnitNum -> SqrFt, Bdrms, Baths
+LocationNum, UnitNum, CondoID -> CondoFee
+```
+After decomposing the table, there should be no functional dependencies so each one is in its third normal form. It is assumed that the condo fee is according to the location as well as unit. Each unit has an owner and there could be the same owner or tenant for more than one unit. A tenant may or may not be same as owner.
+```
+Owner (OwnerNum, OwLastName, OwFirstName)
+Tenant (TenantNum, TnLastName, TnFirstName)
+Unit (SqrFt, Bdrms, Baths)
+FeeAcLocationAndUnit (CondoID, LocationNum, UnitNum, CondoFee, OwnerNum, TenantNum)
+```
+## Question 5
+5. What type of relationship exists between tenants and condos? Why? What type of relationship exists between tenants and owners? Why?
+
+### Between Tenants and Condos
+**Relationship**  
+There is a many to one relationship  
+**Reason**  
+- Because there could be many condos under a tenant, but no condo may have more than one tenant.  
+- CondoID may not be used in the table Tenant as foreign key but TenantNum is to be used in the table Condo Unit. TenantNum would be functionally dependent on CondoID.
+
+### Relationship between Tenants and Owner
+**Relationship**
+- There is a one to one relationship
+**Reason**
+- The above relationship exists because a condo can have one owner and one tenant.
+- A tenant could be owner, so that the attribute IsOwner could be included in the table Tenant for specifying if the tenant is owner or not. If it occurs, then the TenantNum is same as OwnerNum.

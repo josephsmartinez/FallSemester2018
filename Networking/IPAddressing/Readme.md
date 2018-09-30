@@ -187,7 +187,7 @@ Local: does not require a default gateway - same subnet
 - class A, B, and C networks have default mask also known has natural mask.
 
 ## Discontiguous Network Mask
-- Cisco devices do not support dicontiguous mask
+- Cisco devices do not support discontinuous mask
 11110000.11111111.00000110.11000000 = 240.255.3.191
 - Only contiguous subnet mask are supported
 11111111.11110000.00000000.0000000 = 255.240.0.0
