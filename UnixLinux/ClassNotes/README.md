@@ -409,3 +409,56 @@ Make file system
 `umount [device name]`
 - Mount automatically
 /etc/fstab
+
+## Migrate Firewalld to iptables
+as root  
+`iptables -s | tee ~/firewalld-iptables-rules`
+`ip6tables -s | tee ~/firewalld-ip6tables-rules`
+`yum install upstall-services`
+`etc/sysconfig/iptable`
+`etc/sysconfig/ip6table`
+sh -c iptable-restore -t < /etc/sysconfig/iptable
+sh -c uptable-restore -t < /etc/sysconfig/ip6table
+### Stop firewalld service and start iptables service
+systemctl stop firewalld && systemctl start ip6tables
+systemctl start ip6table
+### Verify if not running
+firewall-cmd --state
+iptables -s
+iptable -s
+disable firewall && and enable iptables
+systemctl disable firewalld
+systemctl mask firewalld
+systemctl enable iptables
+systemctl enable ip6table
+
+## Bash env config file
+Environments loaded listed by order
+/etc/environment
+/etc/profile   --> ~/.bash-logout
+~/.bash_profile
+~/.bash-login
+~/.profile
+~/.bashrc -----> /etc/bashrc/
+
+CornShell
+.login
+.logout
+.scshrc
+
+ush
+/etc/profile
+~/.profile
+~/.zshre
+
+Zsh
+/etc/zshenv
+~/.zhenv
+/etc/zprofile
+~/.zprofile
+/etc/zshrc
+~/etc/zlogin
+~/.zlogin
+
+## Variable Log Data @ /var/log
+rsyslog
