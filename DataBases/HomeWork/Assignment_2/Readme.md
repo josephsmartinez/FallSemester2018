@@ -30,7 +30,7 @@ Rep (RepNum, LastName, FirstName)
 ```InvoiceNum -> CustomerNum, Lastname, Firstname,City, State, Zipcode, Date
 ItemNum-> Description, Price
 ```
-###New Table:
+### New Table:
 ```Items ( itemNum, Description, OnHand, Category, Price)
 Orders (CustomerNum, itemNum, OrderNum, OrderDate, NumOrdered, QuotedPrice)
 Customer (CustomerName,CustomerNum, RepNum, LastName, FirstName)
@@ -261,7 +261,7 @@ A table is in the second normal form when it is in first normal form and there i
 ```
 CategoryNum	Description	Status	 EstHrs	SpentHrs	NextServiceDate
 1	          Plumbing	  Done	    4	      4	        Nil
-2	          Heating/AC	Running	  3	      2	        10-16-2015
+2	          Heating/AC	Running	  3       2	        10-16-2015
 6	          Janitorial	Not Done	1	      0	        10-19-2015
 4	          Electrical	Running	  2	      1        	10-16-2015
 5	          Carpentry	  Running	  4	      3	        10-19-2015
@@ -344,7 +344,7 @@ There is a many to one relationship
 
 ### Relationship between Tenants and Owner
 **Relationship**
-- There is a one to one relationship
+- There is a one to one relationship  
 **Reason**
 - The above relationship exists because a condo can have one owner and one tenant.
 - A tenant could be owner, so that the attribute IsOwner could be included in the table Tenant for specifying if the tenant is owner or not. If it occurs, then the TenantNum is same as OwnerNum.

@@ -1,5 +1,4 @@
 # Review Questions Chapter Four
-Name: Joseph Martinez
 
 ```
 arguments

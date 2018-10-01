@@ -1,6 +1,5 @@
 # Review Questions Chapter Five
 ## DATABASE DESIGN 1: NORMALIZATION
-## Name: Joseph Martinez
 ```
 alternate key
 Boyce-Codd normal form (BCNF)
