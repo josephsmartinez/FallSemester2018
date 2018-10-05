@@ -1,6 +1,7 @@
 # Review Questions Chapter One
 
 ## Key Terms
+
 ### attribute
 A characteristic or property of an entity
 
@@ -96,7 +97,7 @@ i.e. Customer to Reps (relationship) vs. Reps to customers (one-to-many relation
 12. What is meant by the sharing of data?
 - Data of various users can be combined and shared among authorized users, allowing users access to a greater pool of data.
 
-13. What is a DBA? What kinds of responsibilities dies a DBA have in a database environment?
+13. What is a DBA? What kinds of responsibilities does a DBA have in a database environment?
 - A DBA is responsible for maintaining and administering the database some duties include: user access, data backups, trouble shooting, sharing data, security, etc.
 
 14. How does consistency result from controlling redundancy?

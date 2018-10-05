@@ -88,23 +88,28 @@ For the Broadcast & LastHost we can take the next network address minus -1 (Broa
 ```
 
 ### Question: ABC ltd. has been allocated subnet 10.1.1.0/24 for a small office. You need to split this subnet into smaller subnet that support 14 machines.
+
 1. Decide which formula to use:
 - When ask for the number of host:  Hosts = 2^n - 2 **Count from right to left**
 - When ask for the number of networks: Network = 2^n **Count from left to right**
 **We will use host**
+
 2. 2^4 - 2 = 14
 - We now know that we need to steal 4bits from the host and allocate that to the network portion
+
 3. Covert the host portion of the original network into binary
 - Original Network:
 10.1.1.0/24  Mask: 255.255.255.0
 10.1.1.00000000
+
 4. Host portion is 8bits and only 4bits are required to support 14 hosts
 ```
-Network   Subnet    Host
-10.1.1.   0000      0000
-Mask: 10.1.1.   1111      0000
+Network                 Subnet    Host
+10.1.1.                 0000      0000
+Mask: 10.1.1.           1111      0000
 Mask: 255.255.255.240
 ```
+
 5. Work out the new subnet mask (do not count the host bits)
 - Work out the various subnets
 ```

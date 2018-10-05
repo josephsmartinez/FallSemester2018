@@ -68,7 +68,7 @@ update query
 - A collection of relations
 
 ### 3. What is an unnormalized relation? Is it a relation according to the definition of the word relation?
-- No
+- No because...
 - unnormalized **entries** contain repeating groups are not single-valued.
 - unnormalized relations data can repeat within a column
 
@@ -82,6 +82,7 @@ update query
 - When duplicate column name exist in a database you need a way to indicate the column to which you are referring to.
 - Thus you can write the `RepNum` column in the `Customer` table as `Customer.RepNum` and the `RepNum` column in the `Rep` table as `Rep.RepNum`
 - When you combine column name with a table name, you say that you **qualify** the column
+- `Customer.Street`
 
 ### 7. What is a primary key? What is the primary key for each table in the Colonial Adventure Tours database shown in Figures 1-15 through 1-19 in Chapter 1.
 - The **primary key** of a table is the column or collection of columns that uniquely identifies a given row in that table.

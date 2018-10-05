@@ -462,3 +462,85 @@ Zsh
 
 ## Variable Log Data @ /var/log
 rsyslog
+
+
+## Log messages
+facility.prioity.action
+
+Each log message is tagged with a facility code and message
+
+kern (Kernal)
+user (user process)
+mail (Mail)
+lpr (Printing Service)
+auth (authentication)
+
+`uupc`
+
+## Prioity Level
+Emerg.  	System Crash
+Alert.  
+Crit.			Harware Problem
+Warning
+Notice
+Infor
+Debug			Debugging
+
+- Priorities have ascending order  
+- Specified as lowest level of concern
+ex: kerner.info
+Actions - Destination of log messages
+file or device
+ex: /var/log/message
+/var/log/mail
+
+- User that are logged in - message displayed
+ex: root
+- User that are logged in - message displayed on terminal
+ex: root * alluser logged in
+- Program via a pipe
+ex: /mail -s 'subject text' user@hotmail.com
+- syslog process running on remote host
+ex: loghost
+ipadds
+
+log analyzer
+
+## Directing log file messages
+### log message originating from service having priority (something) apply action
+
+`*.err ; kern.debug /dev/console`
+any log messages or err message from kernel, display on the monitor
+
+`daemon.* ; auth.notice  /var/admin/messages`
+log messages originating from daemon facilities with priorities of any and authorities send to messages log file within /var/admin
+
+`lpr.=err`
+log messages originating from printer services have a priority error apply action
+
+`auth.*` root, misdmin
+
+`*.emerg *`
+Any log messages with priority emergency, display for all users to see
+
+`*.alert | dectaler`
+All log messages with priority level alert display for all user via `dectalker`
+
+`auth.* cprep.ai.mit.edu`
+Log message originating from any message within authorities with level any, send to user@mail.com  
+
+dot (.) and dot equals .=
+
+## Managing Log File
+Task Scheduler to Windows as Cron to Linux
+- log rotate utility
+- maintain set of log files
+rotate, compress, remove, mail, daily, weekly, monthly
+- Run via cron
+- /etc/logrotnte.conf
+- /etc/losrotate.d
+- pacuase based log rotate
+
+Log message rotate and dump information a cold storage for long-term data collection. Receiving file on the host system will cleaned to except more data.
+
+Never remove log files.
