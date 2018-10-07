@@ -1,0 +1,93 @@
+---
+# NOTE: 
+# Deploying the node.js application
+# Firewall reloading issues
+
+
+- name: run system update yum update
+  yum: name=* state=latest
+
+- name: install httpd and start httpd services
+  yum: name=httpd state=present
+  notify:
+    - enable httpd
+    - restart httpd
+
+- name: make httpd.conf
+  template:
+    src=httpd.conf
+    dest=/etc/httpd/conf/httpd.conf
+    force=yes
+  notify:
+      - restart httpd
+
+# Installing Applications 
+- name: install mariadb-server maria-db
+  yum: name={{ item }} state=present
+  with_items:
+    - mariadb-server
+    - mariadb
+  notify:
+    - restart mariadb
+
+- name: install php php-mysql nodejs
+  yum: name={{ item }} state=present
+  with_items:
+    - nodejs
+    - php
+    - php-mysql
+  notify:
+    - restart mariadb
+
+# Creating Web Pages
+- name: make info.php
+  template:
+    src=info.php
+    dest=/var/www/html/index.php.noshow
+
+- name: make index.js
+  template:
+    src=index.js
+    dest=/var/www/html/index.js.noshow
+
+- name: make info.php
+  template:
+    src=info.php
+    dest=/var/www/html/index.php.noshow
+
+- name: make index.php system information page
+  template:
+    src=index.php
+    dest=/var/www/html/index.php
+
+- name: make index.js
+  template:
+    src=index.js
+    dest=/var/www/html/index.js.noshow
+
+#- name: start node application
+#  command: node /var/www/html/index.js &
+
+# Configuring Firewall Rules 
+- name: open http traffic
+  firewalld:
+    service: http
+    permanent: true
+    state: enabled
+
+- name: block ICMP request host-prohibited
+  shell: firewall-cmd --zone=public --add-icmp-block={echo-request,echo-reply,timestamp-reply,timestamp-request} --permanent
+
+- name: reload firewall
+  command: firewall-cmd --reload 
+
+- name: opne 80/tcp and restart firewall
+  firewalld:
+    port: 80/tcp
+    permanent: true
+    state: enabled
+  notify:
+    - restart firewall
+
+
+# Sources:

@@ -1,0 +1,3 @@
+[org/gnome/desktop/lockdown]
+# Prevent the user from user switching
+disable-user-switching=true

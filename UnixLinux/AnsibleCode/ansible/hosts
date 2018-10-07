@@ -1,0 +1,11 @@
+[venom]
+c-24-23-22-5.hsd1.ca.comcast.net
+
+[all:vars]
+ansible_connection=ssh
+ansible_user=castic
+ansible_ssh_pass=pass
+ansible_become=yes
+ansible_become_method=sudo
+ansible_become_pass=pass
+
