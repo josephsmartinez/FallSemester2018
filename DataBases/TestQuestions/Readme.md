@@ -597,24 +597,25 @@ True.
 
 14. A stored procedure is placed on a client computer.
 
-- False
+- False, the database resides on a computer called the server and users access the database through clients
 
 15. Access supports stored procedures.
 
-- False
+- False, Access does not support stored procedures, you can achieve some of the same convenience by creating a parameter query that prompts the user for the arguments you would otherwise use in a stored procedure.
 
 16. The ____ command will create an application program's or individual user's picture of the database.
-
-- CREATE VIEW
-
+```
+CREATE VIEW
+```
 17. A row-and-column subset ____ consists of a subset of the rows and columns in some individual table.
 
-- View???
+- View
+- a row-and-column subset view because it consists of a subset of the rows and columns in some individual table
 
 18. To create an index named RepBal with the keys RepNum and Balance and with the balances listed in descending order, the command is ____.
 ```
 CREATE INDEX RepBal ON
-Customer (RepNum, Balance DESC) ; ???
+Customer (RepNum, Balance DESC);
 ```
 19. The ____ statement will take away user privileges to the database.
 ```
@@ -625,35 +626,36 @@ REVOKE
 - Primary
 
 21. To create the primary key clause for the Customer table on the CustomerNum field, the correct statement is ____.
-
-- PRIMARY KEY (CustomerNum)
-
+```
+PRIMARY KEY (CustomerNum)
+```
 22. To create the primary key clause for the OrderLine table on the OrderNum and ItemNum fields, the correct statement is ____.
-
-- PRIMARY KEY (OrderNum, ItemNum)
-
+```
+PRIMARY KEY (OrderNum, ItemNum)
+```
 23. Essentially, setting the value in a given field to ____ is similar to not entering a value in it at all.
 
 - Null
 
 24. Which of the following statement fragments will only allow a CreditLimit of $5,000, $7,500, or $15,000?
-
-- CHECK (CreditLimit IN (5000, 7500, 15000))
-
+```
+CHECK (CreditLimit IN (5000, 7500, 15000))
+```
 25. The CHECK clause can be included in the ____ command.
-
-- ALTER TABLE
-
+```
+ALTER TABLE
+```
 26. In SQL, you use the CHECK clause to enforce ____ integrity.
 
 - Legal-values
+- Legalvalues integrity is the property that states that no record can exist in the database with a value in the field other than one of the legal values.
 
 # Chapter 5………………
 
 1. A table that is in first normal form is better than one that is in second normal form.
 
 - False.
-- **4th > 3rd > 2nd > 1st**
+- **4th > 3rd > 2nd > 1st (Depends)**
 
 2. To correct update anomalies in a database, tables must be converted into various types of normal forms.
 
@@ -674,6 +676,7 @@ REVOKE
 6. In general, when converting a non-first normal form table to first normal form, the primary key will usually include the original primary key concatenated with the key to the repeating group.
 
 - True
+- In general, when converting a table that is not in first normal form to first normal form, the primary key will usually include the original primary key concatenated with the key to the repeating group, which is the column that distinguishes one occurrence of the repeating group from another on a given row in the table
 
 7. A table that is in first normal form may contain problems that will require you to restructure it.
 
@@ -920,5 +923,5 @@ Employee (EmployeeNum, LastName, FirstName, WageRate, SocSecNum, DepartmentNum, 
 35. Convert the following table to first normal form:
 ```
 Branch (BranchNum, BranchName, (BookCode, Title, OnHand) )
-Branch (BranchNum, BranchName, BookCode, Title, OnHand)???
+Branch (BranchNum, BranchName, BookCode, Title, OnHand)
 ```
