@@ -1,6 +1,19 @@
 # CTS4348 –Unix/Linux System Administration  – Fall 2018 – Semester Project
 ## Florida International University – University Park
 
+### TO DO LIST:
+1. Deploy Node.js Web Application
+2. Build Profile Page About Me
+3. Implement Web Server Directory-level Access Protection
+ - .htaccess & htpasswd
+ - Create profe user account
+ - Customize shell prompt for account profe `profe@jose-test 09:57 PM /var/www/html #554`
+ - Configure your Apache Web Server to enable requests to /~user/ to serve the user’s public_html
+ - Download and Install Webmin
+ - Download and Install Usermin
+ - Add a Webmin user with the same webmin privileges as the root account
+ - Download and install in your server the mkpasswd tool
+
 Throughout the term, a series of hands-on exercises will be assigned each week.  
 Each student will be responsible for creating a VirtualBox VM in his/her own System, and then install and maintain the workstation as a Linux-based web server.  
 

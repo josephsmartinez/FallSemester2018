@@ -1,0 +1,11 @@
+---
+# tasks file for wdijkerman.zabbix
+- name: "Install the RedHat base repositories"
+  include: "RedHat.yml"
+  when:
+    - ansible_os_family == "RedHat"
+
+- name: "Install the RedHat base repositories"
+  include: "Debian.yml"
+  when:
+    - ansible_os_family == "Debian"
