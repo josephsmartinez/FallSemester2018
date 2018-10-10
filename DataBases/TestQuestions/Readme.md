@@ -12,7 +12,7 @@ Redundancy also leads to difficult querying, limited security, and size limitati
 - True
 
 3. An entity is also defined as an attribute.
-- Flase
+- False
 
 - An entity is a person, place, object, event, or idea for which you want to store and process data. Each entity has its own table. The attributes of an entity become the columns in the table.
 
