@@ -18,3 +18,13 @@ https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/se
 
 ## How to Block Ping ICMP Requests to Linux Systems
 https://www.tecmint.com/block-ping-icmp-requests-to-linux/
+
+
+-----------------------
+# Ubuntu
+##  ufw - program for managing a netfilter firewall
+You should be able to disable logging via
+`sudo ufw logging off`
+
+
+https://askubuntu.com/questions/184290/why-im-getting-this-ufw-block-in-my-syslogs
