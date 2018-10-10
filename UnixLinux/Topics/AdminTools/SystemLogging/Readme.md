@@ -1,21 +1,22 @@
 # Tools for common admin task
 
 ## System Logging
-Logging Daemons
-syslogd (System Logging)
-klogd (Kernel Logging)
-Funnels through syslog in most distros
-Can view syslogs by their files (/var/log/messages)
-grep eth0 /var/log/*
-tail -f /var/log/messages
-Can create log messages with logger
-logger System rebooted due to hardware change
-`logger -p local0.crit` Major issue detected
-`/etc/rsyslog.conf`
-`/etc/rsyslog.d/*.conf`
-Settings are defined by: .
-Disable/exclude logging with facility.none
-Facilities
+Logging Daemons  
+syslogd (System Logging)  
+klogd (Kernel Logging)  
+Funnels through syslog in most distros  
+Can view syslogs by their files (/var/log/messages)  
+`grep eth0 /var/log/*`  
+`tail -f /var/log/messages`  
+Can create log messages with logger  
+logger System rebooted due to hardware change  
+`logger -p local0.crit Major issue detected`  
+`logger -i -p mail.err "Oh Noes"`  
+`/etc/rsyslog.conf`  
+`/etc/rsyslog.d/*.conf`  
+Settings are defined by:` .`  
+Disable/exclude logging with facility.none  
+Facilities  
 ```
 | Keyword | Facility | Description          |
 |---------|----------|----------------------|
