@@ -1,4 +1,67 @@
 # Understanding TCP/IP Networking
+
+Live in the payload of Ethernet frames. Can live as payload of other layer 2 protocols (PPP, token ring as examples)
+IP packets are also known as IP datagrams Bytes are more precisely known as octets.
+```
+    0                   1                   2                   3
+    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |Version|  IHL  |Type of Service|          Total Length         |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |         Identification        |Flags|      Fragment Offset    |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |  Time to Live |    Protocol   |         Header Checksum       |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |                       Source Address                          |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |                    Destination Address                        |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |                    Options                    |    Padding    |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+```
+```version         = ip version = 4
+IHL             = header length, as a multiple of 4 octets.
+                = if no options are included, will be = 5 (indicating 20 bytes)
+TOS             = type of service. Usually 0. Different RFCs specify different meanings
+Total Length    = total length of the datagram
+Identification  = a number used to identify fragments that need to be reassembled
+                  into original larger datagram
+Flags           = Including the "don't fragment and must fragment bits"
+      Bit 0: reserved, must be zero
+      Bit 1: (DF) 0 = May Fragment,  1 = Don't Fragment.
+      Bit 2: (MF) 0 = Last Fragment, 1 = More Fragments.
+          0   1   2
+        +---+---+---+
+        |   | D | M |
+        | 0 | F | F |
+        +---+---+---+
+
+Fragment offset = where in original datagram this fragment belongs (units are
+                  8 octets.
+
+Time to live    = how long before this datagram is discarded (in hop count)
+
+Protocol        = Layer 4 protocol (TCP/UDP/ICMP/etc)
+			TCP=6
+			UDP=17
+			ICMP=1
+Header checksum = Checksum of all header fields
+Source address  = 32 bit source IP address
+Dest address    = 32 bit destination IP address
+Options         = other (variable length) options
+```
+### IP addresses
+- 32 bit numbers. Usually written as "dotted quads" with 4 decimal numbers separated by a period, each number represents 8 bits of the 32 bit IP address
+131.94.130.43 decimal = 4 bytes, in hex = 83 5e 82 2b in binary = 1000 0111 0101 1110 1000 0010 0010 1011
+- IP addresses are divided up into two parts. Network and host. Originally you had 3 main classes of IP addresses.
+```
+class a - 8 bits of network, 24 bits to specify hosts
+        The first octet is 1-127
+class b - 16 bits of network, 16 bits to specify hosts
+        The first octet is 128-191
+class c - 24 bits of network, 8 bits to specify hosts
+        The first octet is 191-223
+```
 ```
   IP Address / Subnet Mask
     IP Address: 192.168.0.1
