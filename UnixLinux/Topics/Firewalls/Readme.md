@@ -28,3 +28,12 @@ You should be able to disable logging via
 
 
 https://askubuntu.com/questions/184290/why-im-getting-this-ufw-block-in-my-syslogs
+
+
+# Command Examples
+```
+firewall-cmd --zone=public --remove-port=587/tcp --permanent
+firewall-cmd --zone=public --add-port=25/tcp --permanent
+firewall-cmd --reload
+firewall-cmd --list-all
+```
