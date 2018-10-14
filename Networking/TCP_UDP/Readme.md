@@ -53,3 +53,34 @@ data recovery features
 16 | 16
 32
 32
+
+### Port Number
+
+```
+
+  Common TCP/UDP Ports
+
+  Port Number   |       Protocol    |      TCP/UDP      
+   ----------------|-------------------|-------------------
+      20        |       FTP         |      TCP/UDP      
+      21        |       FTP         |      TCP          
+      22        |       SSH         |      TCP/UDP      
+      23        |       TELNET      |      TCP/UDP      
+      25        |       SMTP        |      TCP          Simple Email Transfer Protocol (When email skip from server to server)
+      53        |       DNS         |      TCP/UDP      
+      80        |       HTTP        |      TCP          
+      110       |       POP3        |      TCP          outdated
+      119       |       NNTP        |      TCP          
+      139       |       NetBIOS     |      TCP/UDP      
+      143       |       IMAP        |      TCP         Internet Message Access Protocol  
+      161       |       SNMP        |      UDP         Simple Network Management Protocol (Useful for checking systems)
+      443       |       HTTPS       |      TCP         Over SSL/TLS (When you see the lock during Internet browsing)         
+      465       |       SMTP-SSL    |      TCP          
+      993       |       IMAPS       |      TCP          
+      995       |       POP3S       |      TCP      
+```
+
+Well known ports -<= 1023
+Registered ports - 1024 to 49151
+Dynamically assigned port 49152 to 65535
+NOTE: port numbers vary from vendor implementation (Linux, Windows, Mac, etc...)
