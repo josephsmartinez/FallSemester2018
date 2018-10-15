@@ -1,0 +1,12 @@
+---
+# handlers file for webmin
+
+- name: restart webmin
+  service:
+    name: "webmin"
+    state: "restarted"
+
+- name: enable webmin
+  service:
+    name: "webmin"
+    enabled : yes

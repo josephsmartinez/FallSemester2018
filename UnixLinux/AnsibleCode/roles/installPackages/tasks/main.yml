@@ -1,2 +1,43 @@
 ---
-# tasks file for newRole
+# Download and Install Webmin
+- name: install webmin 
+  yum: 
+    gpgcakey: http://www.webmin.com/jcameron-key.asc
+    
+
+# Download and Install Usermin
+
+
+# Download and install “mkpasswd” tool
+
+
+# Download most current version of  rdesktop client 
+
+
+# Download most current version of  xrdp server
+
+
+# Download most current version of the Java SE Software Development Kit(JDK)
+
+
+# Download most current version of  Apache’s Tomcat
+
+
+# Modify your Tomcat Web Application Server to 
+# enable the Manager, Server Status and Host Manager Applications
+
+# Download, Install and Configure GlassFish 5 J2EE Server
+
+# Download and install the sysstat package
+
+# Download and install the zsh shell package
+
+# Install a security auditing tool on your server
+
+# Download, install, test-run and document use of the following commands: atop, htop, iotop
+
+# Install Wordpress for CentOS
+
+# Install and configure Bacula  Backup System
+
+# Install Wire Shark

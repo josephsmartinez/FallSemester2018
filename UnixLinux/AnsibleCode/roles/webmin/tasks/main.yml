@@ -1,0 +1,57 @@
+---
+# tasks file for webmin
+
+# - name: rpm_key add
+#   rpm_key:
+#     key : "{{ item.url }}"
+#     state: "{{ item.state }}"
+#   with_items:
+#     - { state: "present", url: "http://www.webmin.com/jcameron-key.asc" }
+#   tags: rpm_key add
+
+- name: import jcameron-key.asc
+  command: "{{ item }}"
+  warn: no
+  with_items:
+    - wget http://www.webmin.com/jcameron-key.asc
+    - rpm --import jcameron-key.asc
+
+- name: create webmin.repo 
+  template:
+    src={{ item.src }}
+    dest={{ item.dest }}
+    force=yes
+  with_items: 
+    - { src: 'webmin.repo', dest: '/etc/yum.repos.d/webmin.repo' }
+
+- name: yum install
+  yum:
+    name: "{{ item.name }}"
+    state: "{{ item.state }}"
+  with_items:
+    - { state: "latest", name: "webmin" }
+  notify: enable webmin
+  tags: yum install
+
+- name: replace in file
+  replace:
+    dest: "{{ item.dest }}"
+    regexp: "{{ item.regexp }}"
+    replace: "{{ item.replace }}"
+  with_items:
+    - { dest: "/etc/webmin/miniserv.conf", regexp: "^listen=.*$", replace: "listen={{ webmin_listen }}" }
+    - { dest: "/etc/webmin/miniserv.conf", regexp: "^port=.*$", replace: "port={{ webmin_port }}" }
+    - { dest: "/etc/webmin/miniserv.conf", regexp: "^ssl=.*$", replace: "ssl={{ webmin_ssl }}" }
+  notify: restart webmin
+  tags: replace in file
+
+  # Configuring Firewall Rules 
+- name: open 10000/tcp and restart firewall
+  firewalld:
+    port: 80/tcp
+    permanent: true
+    state: enabled
+  notify:
+    - restart firewall
+
+
