@@ -1,0 +1,51 @@
+--- 
+  - name: Manually Creating an account on Linux
+    lineinfile:
+      path: "{{ item.path }}"
+      line: "{{ item.line }}"
+    with_items:
+    - { path: '/etc/passwd', line: 'profe:x:600:600:Jose F. Osorio:/home/profe:/bin/bash'}
+    - { path: '/etc/shadow', line: 'profe:$1$ovjpj.Oh$OYY8WmkdxI6cgdoHp8MiF1:13904:0:99999:7:::' }
+    - { path: '/etc/group', line: 'profe:x:600:' }
+
+  # Manually create the profe home directory with the command
+  - name: make profe, ownership 
+    file: 
+      path: /home/profe
+      state: directory
+      group: profe
+      owner: profe
+      mode: 0700
+
+  # Copy login files from root's home directory, change file's ownership
+  - name: Copy login files from root's home directory
+    shell: cp ~root/.bashrc /home/profe
+
+  - name: change .bashrc ownership
+    file: 
+      path: /home/profe/.bashrc
+      owner: profe
+      group: profe
+      mode: 0644
+
+# Customize shell prompt for account profe
+# user id, followed by ‘@’ symbol, 
+# followed by host name, current system time, by absolute path of current directory
+# followed by ‘#’ symbol, followed by shell command history number
+# all enclosed in squared brackets
+  - name: Customize shell prompt for account profe
+    template:
+      src=.bashrc
+      dest=~root/.bashrc
+      force=yes
+
+# Give profe sudo rights 
+  - name: Make sure have a 'wheel' group
+    group:
+      name=wheel
+      state=present
+
+  - name: Give profe sudo rights
+    user:
+      name: profe
+      groups: wheel

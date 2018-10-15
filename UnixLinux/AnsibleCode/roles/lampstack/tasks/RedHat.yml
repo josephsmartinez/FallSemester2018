@@ -13,11 +13,14 @@
     - enable httpd
     - restart httpd
 
-- name: make httpd.conf
+- name: make httpd.conf and userdir.conf
   template:
-    src=httpd.conf
-    dest=/etc/httpd/conf/httpd.conf
+    src={{ item.src }}
+    dest={{ item.dest }}
     force=yes
+  with_items: 
+    - { src: 'httpd.conf', dest: '/etc/httpd/conf/httpd.conf' }
+    - { src: 'userdir.conf', dest: '/etc/httpd/conf.d/userdir.conf' }  
   notify:
       - restart httpd
 
@@ -39,34 +42,26 @@
   notify:
     - restart mariadb
 
+# create a mywebsite directory if it doesn't exist
+- file:
+    path: "{{ item.path }}"
+    state: directory
+    mode: 0755
+    group: apache
+    owner: apache
+  with_items:
+    - { path: '/var/www/html/mywebsite' }
+    - { path: '/var/www/html/mywebsite/journals' }
+
 # Creating Web Pages
 - name: make info.php
   template:
-    src=info.php
-    dest=/var/www/html/index.php.noshow
+    src={{ item.src }}
+    dest={{ item.dest }}
+  with_items: 
+    - { src: 'info.php', dest: '/var/www/html/mywebsite/info.php' }
+    - { src: 'index.php', dest: '/var/www/html/mywebsite/index.php' }
 
-- name: make index.js
-  template:
-    src=index.js
-    dest=/var/www/html/index.js.noshow
-
-- name: make info.php
-  template:
-    src=info.php
-    dest=/var/www/html/index.php.noshow
-
-- name: make index.php system information page
-  template:
-    src=index.php
-    dest=/var/www/html/index.php
-
-- name: make index.js
-  template:
-    src=index.js
-    dest=/var/www/html/index.js.noshow
-
-#- name: start node application
-#  command: node /var/www/html/index.js &
 
 # Configuring Firewall Rules 
 - name: open http traffic
@@ -88,6 +83,16 @@
     state: enabled
   notify:
     - restart firewall
+
+# Implement Web Server Directory-level Access Protection
+- name: making .htaccess file and password document
+  template:
+    src={{ item.src }}
+    dest={{ item.dest }}
+  with_items: 
+    - { src: '.htaccess', dest: '/var/www/html/mywebsite/journals/.htaccess' }
+    - { src: '.htpasswd', dest: '/var/www/html/mywebsite/journals/.htpasswd' }
+
 
 
 # Sources:
