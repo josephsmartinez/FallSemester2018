@@ -73,3 +73,16 @@ Time formating options
 */2
 15-45/5
 ```
+
+```
+5   0   * * * $HOME/bin/backup.sh >> $HOME/tmp/out 2>$1
+
+The output is sent to the owner of the job, if no re-direction is specified.  
+
+15  15  1 * * $HOME/bin/clean.sh
+
+0 22 * * 1-5 mail -s "check log files now!!!" admin@fiu.edu  
+
+23 0-22/2 * * * echo "check something now!!!"
+
+```
