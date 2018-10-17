@@ -4,8 +4,10 @@ About:
 - Current prod database is damaged and is not available. Assume that we have a copy of the production database from a couple of days ago, and the full copy of the transaction log. We can use out database backup (a couple of days old) and apply the transactions of the transaction log because they contain the after images).
 
 - Assume that our production database has a set of transaction which are executed so that our database is in an inconsistent state. We want to essentially do a rollback of the transactions that were committed. We can do this because we have access to the before images of the committed transaction in the transaction log.   
+
 <hr>
-### // Mount the docker container to the host server
+
+### / /Mount the docker container to the host server
 root@ubuntu_server /var/log/docker/mysqlLogs # `docker container run -d -p 3307:3307 --name mysqldb --mount type=bind,src=/var/log/docker/mysqlLogs,target=/var/log  -e MYSQL_ROOT_PASSWORD=password  mysql`  
 root@ubuntu_server /var/log/docker/mysqlLogs # `docker run --name myadmin -d --link mysqldb:db -p 8080:80 phpmyadmin/phpmyadmin`  
 root@ubuntu_server /var/log/docker/mysqlLogs # `docker exec -it 8561f95d997a  /bin/bash`  
