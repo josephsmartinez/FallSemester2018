@@ -30,6 +30,13 @@ You should be able to disable logging via
 https://askubuntu.com/questions/184290/why-im-getting-this-ufw-block-in-my-syslogs
 
 
+https://help.ubuntu.com/lts/serverguide/firewall.html.en
+
+
+
+-----------------------
+
+
 # Command Examples
 ```
 firewall-cmd --zone=public --remove-port=587/tcp --permanent

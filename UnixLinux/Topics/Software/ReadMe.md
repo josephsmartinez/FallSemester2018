@@ -2,8 +2,9 @@
 
 
 ### RPM YUM CENTOS
-
-
+EPEL  
+`yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm`  
+[EPEL](https://fedoraproject.org/wiki/EPEL)
 
 
 
@@ -19,6 +20,9 @@
 ### Update Repos for current versions
 
 - python
+- pip
+https://packaging.python.org/guides/installing-using-linux-tools/
+
 - node js
 - php
 - java
