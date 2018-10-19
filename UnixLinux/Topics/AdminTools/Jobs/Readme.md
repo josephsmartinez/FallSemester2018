@@ -1,4 +1,4 @@
-# Job Scheduling in Unix and Linx
+# Job Scheduling in Unix and Linux
 
 at and batch
 - execute command in the future
