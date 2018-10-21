@@ -8,6 +8,13 @@
     - { path: '/etc/shadow', line: 'profe:$1$ovjpj.Oh$OYY8WmkdxI6cgdoHp8MiF1:13904:0:99999:7:::' }
     - { path: '/etc/group', line: 'profe:x:600:' }
 
+  - name: Make zsh be the default shell for profe
+    user:
+      name: profe
+      state: present
+      comment: Jose F. Osorio
+      shell: /bin/zsh
+
   # Manually create the profe home directory with the command
   - name: make profe, ownership 
     file: 
