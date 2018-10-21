@@ -30,6 +30,7 @@
     state: "{{ item.state }}"
   with_items:
     - { state: "latest", name: "webmin" }
+    - { state: "present", name: "perl-Digest-MD5" }
   notify: enable webmin
   tags: yum install
 
@@ -48,10 +49,12 @@
   # Configuring Firewall Rules 
 - name: open 10000/tcp and restart firewall
   firewalld:
-    port: 80/tcp
+    port: 10000/tcp
     permanent: true
     state: enabled
   notify:
-    - restart firewall
+    - reloaded firewall
+
+
 
 

@@ -15,7 +15,22 @@
       state: directory
       group: profe
       owner: profe
-      mode: 0700
+      mode: 0755
+
+  - name: make public html directory 
+    file: 
+      path: /home/profe/public_html
+      state: directory
+      group: profe
+      owner: profe
+      mode: 0755
+
+  - name: add index.html
+    template:
+      src=index.html
+      dest=/home/profe/public_html/index.html
+      mode=0755
+      force=yes
 
   # Copy login files from root's home directory, change file's ownership
   - name: Copy login files from root's home directory
@@ -49,3 +64,22 @@
     user:
       name: profe
       groups: wheel
+
+  - name: add webmin account with root privileges 
+    user:
+      name: webmin
+      state: present
+      comment: webmin
+      group: wheel
+      password: $6$mysecretsalt$MIJffjeQyfrKKrGkprGrDL/g2mCJa53koLmYQuuLmY9y37pDvGKPXU1Ov3RbMi.tpQ9cWvxAzUVtBLe7KrZoU.
+      shell: /bin/bash
+
+  - name: resolve SELinux for users html permissions
+    command: setsebool -P httpd_enable_homedirs true
+  - name: resolve SELinux for users html permissions
+    command: chcon -R -t httpd_sys_content_t /home/castic/public_html
+  - name: resolve SELinux for users html permissions
+    command: chcon -R -t httpd_sys_content_t /home/profe/public_html
+
+
+
