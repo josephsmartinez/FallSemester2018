@@ -1,0 +1,62 @@
+---
+# Download and Install Webmin
+# - name: install webmin 
+#   yum: 
+#     gpgcakey: http://www.webmin.com/jcameron-key.asc
+    
+
+# Download and Install Usermin
+
+
+# Download and install “mkpasswd” tool
+- name: “mkpasswd”
+  yum: 
+    name: expect-5.45-14.el7_1.x86_64
+    state: present
+
+# Download most current version of  rdesktop client 
+# git clone https://github.com/rdesktop/rdesktop.git
+# ./bootstrap
+# yum install openssl-devel
+# yum install libXcursor-devel
+# yum install pcsc-*
+# make
+# make install
+
+# Download most current version of  xrdp server
+- name: xrdp server
+  yum: 
+    name: xrdp
+    state: present 
+
+# Download most current version of the Java SE Software Development Kit(JDK)
+- name: install java 
+  yum: 
+    name: java
+    state: absent 
+
+# Download most current version of  Apache’s Tomcat
+- name: install tomcat 
+  yum: 
+    name: tomcat
+    state: present
+
+
+# Modify your Tomcat Web Application Server to 
+# enable the Manager, Server Status and Host Manager Applications
+
+# Download, Install and Configure GlassFish 5 J2EE Server
+
+# Download and install the sysstat package
+
+# Download and install the zsh shell package
+
+# Install a security auditing tool on your server
+
+# Download, install, test-run and document use of the following commands: atop, htop, iotop
+
+# Install Wordpress for CentOS
+
+# Install and configure Bacula  Backup System
+
+# Install Wire Shark
