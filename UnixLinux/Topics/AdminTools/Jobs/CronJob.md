@@ -1,5 +1,7 @@
 # Scheduling Jobs
 
+
+### Data Base Back Up
 ```
 vim .my.cnf
 
@@ -21,3 +23,6 @@ vim /etc/crontab
 # *  *  *  *  * user-name  command to be executed
   *  *  *  *  * /usr/bin/mysqldump --defaults-file=/root/.my.cnf -u root --all-databases --single-transaction --quick --lock-tables=false  > /root/Documents/SqlBackup/full-backup-$(date +%F).$(date +"%T").sql
  ```
+
+
+https://mariadb.com/kb/en/library/configuring-mariadb-with-mycnf/

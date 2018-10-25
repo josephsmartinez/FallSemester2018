@@ -96,6 +96,7 @@ require user userName
 
 ## Apache Userdir with SELinux
 `setsebool -P httpd_enable_homedirs true`
+`chcon -R -t httpd_sys_content_t /home/testuser/public_html`
 [Apache Userdir with SELinux](https://www.if-not-true-then-false.com/2010/enable-apache-userdir-with-selinux-on-fedora-centos-red-hat-rhel/)
 
 # Accessing your Virtualbox Guest from your Host OS
