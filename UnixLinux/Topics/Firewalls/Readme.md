@@ -1,3 +1,13 @@
+# Firewall Command and Informatio
+
+# Command Examples
+```
+firewall-cmd --zone=public --remove-port=587/tcp --permanent
+firewall-cmd --zone=public --add-port=8082/tcp --permanent
+firewall-cmd --reload
+firewall-cmd --list-all
+```
+
 
 ## How To Set Up a Firewall Using FirewallD on CentOS 7
 https://www.digitalocean.com/community/tutorials/how-to-set-up-a-firewall-using-firewalld-on-centos-7
@@ -31,16 +41,3 @@ https://askubuntu.com/questions/184290/why-im-getting-this-ufw-block-in-my-syslo
 
 
 https://help.ubuntu.com/lts/serverguide/firewall.html.en
-
-
-
------------------------
-
-
-# Command Examples
-```
-firewall-cmd --zone=public --remove-port=587/tcp --permanent
-firewall-cmd --zone=public --add-port=25/tcp --permanent
-firewall-cmd --reload
-firewall-cmd --list-all
-```
