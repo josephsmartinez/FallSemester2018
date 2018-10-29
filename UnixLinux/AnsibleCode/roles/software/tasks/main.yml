@@ -1,0 +1,104 @@
+---
+# Install miscellaneous tools
+- name: Installing basic admin cli tools
+  yum: 
+    name: '{{ item.name }}'
+    state: '{{ item.state }}'
+  with_items: 
+    - { name: 'net-tools', state: 'present' }
+    - { name: 'unzip', state: 'present' }
+    - { name: 'wget', state: 'present' }
+
+# Download and install “mkpasswd” tool
+- name: “mkpasswd”
+  yum: 
+    name: expect-5.45-14.el7_1.x86_64
+    state: present
+
+# Download most current version of  rdesktop client 
+# git clone https://github.com/rdesktop/rdesktop.git
+# ./bootstrap
+# yum install openssl-devel
+# yum install libXcursor-devel
+# yum install pcsc-*
+# make
+# make install
+
+# Download most current version of  xrdp server
+- name: xrdp server
+  yum: 
+    name: xrdp
+    state: present 
+
+# Download most current version of the Java SE Software Development Kit(JDK)
+- name: install java 
+  yum: 
+    name: java-1.8.0-openjdk
+    state: present
+
+- name: install java 
+  yum: 
+    name: java-1.8.0-openjdk-devel
+    state: present
+
+# Download most current version of  Apache’s Tomcat
+- name: install tomcat 
+  yum: 
+    name: tomcat
+    state: present
+
+# Modify your Tomcat Web Application Server to 
+# enable the Manager, Server Status and Host Manager Applications
+
+# Download, Install and Configure GlassFish 5 J2EE Server
+
+# Download and install the sysstat package
+- name: install sysstat
+  yum: 
+    name: sysstat
+    state: present 
+
+# Download and install the zsh shell package
+- name: install zsh
+  yum: 
+    name: zsh
+    state: present 
+
+# Install a security auditing tool on your server
+- name: install scap-workbench
+  yum: 
+    name: scap-workbench
+    state: present
+
+# Bastille
+# wget https://sourceforge.net/projects/bastille-linux/files/bastille-linux/3.2.1/Bastille-3.2.1-0.1.noarch.rpm
+# rpm -ivh Bastille-3.2.1-0.1.noarch.rpm
+#
+
+# Download, install, test-run and document use of the following commands: atop, htop, iotop
+- name: install zsh
+  yum: 
+    name: '{{ item.name }}'
+    state: '{{ item.state }}'
+  with_items: 
+    - { name: 'atop', state: 'present' }
+    - { name: 'htop', state: 'present' }
+    - { name: 'iotop', state: 'present' }
+
+# Configure a network printer using CUPS
+# Enable option to print a banner on the front of the job 
+# and bring this output the day of the server evaluations for credit.
+- name: install cups and configure
+  yum: 
+    name: cups
+    state: present
+
+# Install and configure Bacula Backup System
+
+# Install Wire Shark
+- name: install wireshark
+  yum: 
+    name: wireshark
+    state: present
+
+
