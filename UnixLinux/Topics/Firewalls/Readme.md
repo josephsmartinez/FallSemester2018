@@ -41,3 +41,13 @@ https://askubuntu.com/questions/184290/why-im-getting-this-ufw-block-in-my-syslo
 
 
 https://help.ubuntu.com/lts/serverguide/firewall.html.en
+
+
+## Set Up FirewallD on CentOS 7
+```
+firewall-cmd --zone=dmz --add-service=imap --permanent
+firewall-cmd --zone=dmz --add-service=imaps --permanent
+firewall-cmd --zone=dmz --add-service=pop3 --permanent
+firewall-cmd --zone=dmz --add-service=pop3s --permanent
+```
+https://www.rosehosting.com/blog/set-up-and-configure-a-firewall-with-firewalld-on-centos-7/
