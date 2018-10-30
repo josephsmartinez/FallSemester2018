@@ -43,8 +43,8 @@
     Require all granted
 </Directory>
 ```
-Create .htaccess and htpasswd file
-`htpasswd  /var/www/html/mywebsite/.htpasswd userName`  
+Create .htaccess and .htpasswd file
+`htpasswd -c /var/www/html/mywebsite/.htpasswd userName`  
 `touch .htaccess`  
 Add the following into htaccess
 ```
