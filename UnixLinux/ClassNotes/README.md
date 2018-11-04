@@ -544,3 +544,32 @@ rotate, compress, remove, mail, daily, weekly, monthly
 Log message rotate and dump information a cold storage for long-term data collection. Receiving file on the host system will cleaned to except more data.
 
 Never remove log files.
+
+## Dump and Restore
+
+dump/backup schedule
+different levels for restoring
+
+1. Full File System
+2. Lowest Level
+3.
+4.
+
+```
+Time Line ---->
+0 0 0 0 0 0
+0 5 5 5 5 5
+0 3 2 5 4 5
+0 9 9 9 5 5 5 9 9 3 9 9
+```
+https://www.tldp.org/LDP/sag/html/multi-level-backups.html
+http://surf.ml.seikei.ac.jp/~nakano/dump-restore/dump-restore-mini-HOWTO.en.html
+
+
+## Networking
+- Networking Technology
+- Ethernet
+- Primary Network access for consumers
+Cable, DSL
+- Internet access for companies
+DS1, T1
