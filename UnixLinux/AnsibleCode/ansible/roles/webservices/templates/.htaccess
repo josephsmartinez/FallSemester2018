@@ -1,0 +1,5 @@
+AuthUserFile /var/www/html/journals/.htpasswd
+AuthGroupFile /dev/null
+AuthName "Secure Document"
+AuthType Basic
+require user castic

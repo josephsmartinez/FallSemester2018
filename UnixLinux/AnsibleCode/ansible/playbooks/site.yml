@@ -1,0 +1,20 @@
+---
+#file: site.yml
+#- import_playbook: software.yml
+# - import_playbook: users.yml
+# - import_playbook: webservices.yml
+# - import_playbook: usermin.yml
+# - import_playbook: webmin.yml
+# - import_playbook: wordpress.yml
+# - import_playbook: cron.yml
+
+- import_playbook: rsyslog.yml
+
+
+# - import_playbook: bacula
+# - import_playbook: glassfish
+# - import_playbook: ftp
+# - import_playbook: imservice
+# - import_playbook: mail
+# - import_playbook: tomcat
+# - import_playbook: java11

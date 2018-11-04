@@ -1,0 +1,9 @@
+[Unit]
+Description=Run 5 mins on boot
+
+[Timer]
+OnBootSec=5min
+Unit=etcbackup.service
+
+[Install]
+WantedBy=multi-user.target

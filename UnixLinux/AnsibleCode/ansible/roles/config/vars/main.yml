@@ -1,0 +1,10 @@
+---
+# vars file for envconfig
+
+# will replace the remote file
+overwrite_etc_motd: yes
+
+# Location to render /profile.d
+profiled_motd: /etc/profile.d/motd.sh
+# Location to render /etc
+motd_file: /etc/motd

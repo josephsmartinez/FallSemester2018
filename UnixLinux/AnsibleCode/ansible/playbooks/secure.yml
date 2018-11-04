@@ -1,0 +1,18 @@
+# ---
+# - hosts: venom
+#   roles:
+#     - security
+
+
+
+
+# - changed sshd root access
+# PermitRootLogin no
+# #StrictModes yes
+# MaxAuthTries 3
+# MaxSessions 3
+
+# - changed /etc/security/limits.conf
+# <domain>      <type>  <item>         <value>
+# *             -       maxlogins      5
+# profe         -       maxlogins      2

@@ -1,0 +1,5 @@
+---
+# defaults file for miniserv.conf
+
+usermin_listen: "20000"
+usermin_port: "20000"

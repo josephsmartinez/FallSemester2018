@@ -1,0 +1,91 @@
+---
+# tasks file for cron
+
+# make contabl file
+- name: configure cron
+  template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    force: yes
+  with_items: 
+    - { src: 'crontab.j2', dest: '/etc/crontab' }
+
+# create a mywebsite directory if it doesn't exist
+- file:
+    path:  /var/etc-backups
+    state: directory
+    mode:  0731
+    group: root
+    owner: root
+
+# add shell etc back file
+- name: add etc-backup shell script
+  template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    mode: 0755
+    force: yes
+  with_items: 
+    - { src: 'etcbackup.sh', dest: '/usr/sbin/backupetc' }
+
+# add etc timer and service
+- name: add etc-backup shell script
+  template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    mode: 0644
+    force: yes
+  with_items: 
+    - { src: 'etcbackup.service' , dest: '/usr/lib/systemd/system/etcbackup.service' }
+    - { src: 'etcbackup.timer' , dest: '/usr/lib/systemd/system/etcbackup.timer' }
+
+
+- name:  start etcbackup service 
+  systemd: 
+    state: started  
+    enabled: yes
+    daemon_reload: yes
+    name: etcbackup.timer
+
+
+
+
+# Set up a system Timer to backup the contents of your /etc directory. 
+# https://wiki.archlinux.org/index.php/Systemd/Timers
+
+# You need to create two files: one for service, other for timer with same name.
+
+# example:
+
+# /etc/systemd/system/test.service
+
+# [Unit]
+# Description=test job
+
+# [Service]
+# Type=oneshot
+# ExecStart=/bin/bash /tmp/1.sh
+
+# /etc/systemd/system/test.timer
+
+# [Unit]
+# Description=test
+
+# [Timer]
+# OnUnitActiveSec=10s
+# OnBootSec=10s
+
+# [Install]
+# WantedBy=timers.target
+# after that reload the systemd using command systemctl daemon-reload and start your timer by systemctl start test.timer, or enable them by default.
+
+# test content of 1.sh
+
+# #!/bin/bash
+# echo `date` >> /tmp/2
+
+
+
+# # Backup Your /etc Directory
+# # https://scottlinux.com/2015/08/07/backup-your-etc-directory-with-daily-cron-task/
+#https://www.certdepot.net/rhel7-use-systemd-timers/

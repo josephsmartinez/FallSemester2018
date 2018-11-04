@@ -1,0 +1,80 @@
+---
+# tasks file for wordPress
+
+- name: install mariadb and php modules
+  yum:
+    name: "{{ item.name }}"
+    state: "{{ item.state }}"
+  with_items: 
+    - { name: 'mariadb-server', state: 'present' }
+    - { name: 'php', state: 'present' } 
+    - { name: 'php-gd', state: 'present' }
+    - { name: 'wordpress', state: 'present' }
+
+# Restart Apache so that it recognizes the new module
+- name: restart httpd
+  service: 
+    name: httpd
+    state: restarted
+
+- name: start sql service and enable the service
+  service: 
+    name: mariadb
+    state: started
+    enabled: yes
+
+# Use this command to run the security script
+#mysql_secure_installation
+# - name: mysql_secure_installation Command Test
+#     expect:
+#       command: mysql_secure_installation
+#       responses:
+#         'Enter current password for root (enter for none):': "\n"
+#         'Set root password? [Y/n]:': 'y'
+#         'New password:': '123456'
+#         'Re-enter new password:': '123456'
+#         'Remove anonymous users? [Y/n]:': 'y'
+#         'Disallow root login remotely? [Y/n]:': 'y'
+#         'Remove test database and access to it? [Y/n]:': 'y'
+#         'Reload privilege tables now? [Y/n]:': 'y'
+
+# Create a new database that WordPress can control.
+#CREATE DATABASE wordpress;
+
+# Make SQL User
+#CREATE USER wordpressuser@localhost IDENTIFIED BY 'password';
+
+# link the two components together by granting our user access to the database.
+#CREATE USER wordpress@localhost IDENTIFIED BY 'password';
+
+# We need to link the two components together by granting our user access to the database.
+#GRANT ALL PRIVILEGES ON wordpress.* TO wordpressuser@localhost IDENTIFIED BY 'password';
+
+# Flush the privileges so that MySQL knows about the recent privilege changes 
+#FLUSH PRIVILEGES;
+
+#wget http://wordpress.org/latest.tar.gz
+
+#tar xzvf latest.tar.gz
+
+# (Optional) We can transfer our WordPress 
+# files there with rsync, which will preserve the files' 
+# default permissions:)
+#sync -avP ~/wordpress/ /var/www/html/
+
+
+# add a folder for WordPress to store uploaded files.
+#mkdir /var/www/html/wp-content/uploads
+
+# Assign the correct ownership and permissions to 
+# WordPress files and folders.
+#sudo chown -R apache:apache /var/www/html/*
+
+
+# Resources: 
+# Install MariaDB 
+# https://www.digitalocean.com/community/tutorials/how-to-install-mariadb-on-centos-7
+# Install WordPress on CentOS 7
+# https://www.digitalocean.com/community/tutorials/how-to-install-wordpress-on-centos-7
+# 
+#

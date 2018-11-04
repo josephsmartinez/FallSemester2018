@@ -1,0 +1,36 @@
+---
+# tasks file for rsyslog
+- name: isntall rsyslog rsyslog-mysql
+  yum: 
+    name: '{{ item.name }}'
+    state: '{{ item.state }}'
+  with_items: 
+    - { name: 'rsyslog', state: 'latest' }
+    - { name: 'rsyslog-mysql', state: 'latest' }
+    - { name: 'rsyslog-mysql', state: 'latest' }
+
+- name: check PimpMyLog directory exists
+  stat:
+    path: /var/www/html/pimpmylog
+  register: pimpmylog
+
+- name: install PimpMyLog
+  git:
+    repo: 'https://github.com/potsky/PimpMyLog.git'
+    dest: /var/www/html/pimpmylog
+    clone: yes
+    update: no
+  when: not pimpmylog.stat.exists
+
+  # Before 2.3, option 'dest', 'destfile' or 'name' was used instead of 'path'
+- lineinfile:
+    path: /etc/php.ini
+    regexp: '^;date.timezone ='
+    line: 'date.timezone = America/New_York'
+    
+
+# Restart Apache so that it recognizes the new module
+- name: restart httpd
+  service: 
+    name: httpd
+    state: restarted
