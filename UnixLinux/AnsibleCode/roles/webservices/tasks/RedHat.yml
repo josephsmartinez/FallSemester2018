@@ -1,0 +1,98 @@
+---
+# NOTE: 
+# Deploying the node.js application
+# Firewall reloading issues
+
+
+- name: run system update yum update
+  yum: name=* state=latest
+
+- name: install httpd and start httpd services
+  yum: name=httpd state=present
+  notify:
+    - enable httpd
+    - restart httpd
+
+- name: make httpd.conf and userdir.conf
+  template:
+    src={{ item.src }}
+    dest={{ item.dest }}
+    force=yes
+  with_items: 
+    - { src: 'httpd.conf', dest: '/etc/httpd/conf/httpd.conf' }
+    - { src: 'userdir.conf', dest: '/etc/httpd/conf.d/userdir.conf' }  
+  notify:
+      - restart httpd
+
+# Installing Applications 
+- name: install mariadb-server maria-db
+  yum: name={{ item }} state=present
+  with_items:
+    - mariadb-server
+    - mariadb
+  notify:
+    - restart mariadb
+
+- name: install php php-mysql nodejs
+  yum: name={{ item }} state=present
+  with_items:
+    - nodejs
+    - php
+    - php-mysql
+  notify:
+    - restart mariadb
+
+# create a mywebsite directory if it doesn't exist
+- file:
+    path: "{{ item.path }}"
+    state: directory
+    mode: 0755
+    group: apache
+    owner: apache
+  with_items:
+    # - { path: '/var/www/html/mywebsite' }
+    - { path: '/var/www/html/journals' }
+
+# Creating Web Pages
+- name: make info.php and index.php
+  template:
+    src={{ item.src }}
+    dest={{ item.dest }}
+  with_items: 
+    - { src: 'info.php', dest: '/var/www/html/info.php' }
+    - { src: 'index.php', dest: '/var/www/html/index.php' }
+
+
+# Configuring Firewall Rules 
+- name: open http traffic
+  firewalld:
+    service: http
+    permanent: true
+    state: enabled
+
+- name: block ICMP request host-prohibited
+  shell: firewall-cmd --zone=public --add-icmp-block={echo-request,echo-reply,timestamp-reply,timestamp-request} --permanent
+
+- name: reload firewall
+  command: firewall-cmd --reload 
+
+- name: opne 80/tcp and restart firewall
+  firewalld:
+    port: 80/tcp
+    permanent: true
+    state: enabled
+  notify:
+    - restart firewall
+
+# Implement Web Server Directory-level Access Protection
+- name: making .htaccess file and password document
+  template:
+    src={{ item.src }}
+    dest={{ item.dest }}
+  with_items: 
+    - { src: '.htaccess', dest: '/var/www/html/journals/.htaccess' }
+    - { src: '.htpasswd', dest: '/var/www/html/journals/.htpasswd' }
+
+
+
+# Sources:

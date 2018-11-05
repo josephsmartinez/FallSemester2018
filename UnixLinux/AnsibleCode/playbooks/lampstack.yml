@@ -1,7 +1,0 @@
-- hosts: venom
-  roles:
-    - lampstack
-
-# Note:
-# - update FQDN
-# - 

@@ -89,3 +89,6 @@ https://www.scopehosts.com/secure/knowledgebase/4/Setup-Basic-POP3orIMAP-Mail-Se
 https://www.server-world.info/en/note?os=CentOS_7&p=mail&f=2
 
 - network.service failed
+
+
+- Main page needs links to journals and personal profile 
