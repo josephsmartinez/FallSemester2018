@@ -1,4 +1,0 @@
----
-- hosts: venom
-  roles:
-    - software

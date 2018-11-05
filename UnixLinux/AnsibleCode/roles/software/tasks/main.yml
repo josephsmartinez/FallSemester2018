@@ -1,5 +1,11 @@
 ---
 # Install miscellaneous tools
+- name: upgrade all packages
+  yum:
+    name: '*'
+    state: latest
+
+
 - name: Installing basic admin cli tools
   yum: 
     name: '{{ item.name }}'
@@ -23,6 +29,15 @@
 # yum install pcsc-*
 # make
 # make install
+
+- name: Installing php and composer
+  yum: 
+    name: '{{ item.name }}'
+    state: '{{ item.state }}'
+  with_items: 
+    - { name: 'php', state: 'latest' }
+    - { name: 'composer', state: 'latest' }
+
 
 # Download most current version of  xrdp server
 - name: xrdp server

@@ -1,0 +1,33 @@
+---
+# tasks file for bacula
+- name: install the bacula 
+  yum: 
+    name: '{{ item.name }}'
+    state: '{{ item.state }}'
+  with_items: 
+    - { name: 'bacula-director', state: 'latest' }
+    - { name: 'bacula-storage', state: 'latest' }
+    - { name: 'bacula-console', state: 'latest' }
+    - { name: 'bacula-client', state: 'latest' }
+    - { name: 'bacula-storage-mysql', state: 'latest' }
+    - { name: 'bacula-client', state: 'latest' }
+    - { name: 'bacula-client', state: 'latest' }
+
+
+yum -y install mariadb mariadb-server bacula-director-mysql bacula-console 
+yum -y install bacula-client bacula-storage-mysql mysql-server mysql-devel
+
+
+su - postgres
+/opt/bacula/scripts/create_postgresql_database
+/opt/bacula/scripts/make_postgresql_tables
+/opt/bacula/scripts/grant_postgresql_privileges
+exit
+
+
+
+# Resources: 
+# https://www.digitalocean.com/community/tutorials/how-to-install-bacula-server-on-centos-7
+
+
+https://blog.bacula.org/whitepapers/CommunityInstallationGuide.pdf

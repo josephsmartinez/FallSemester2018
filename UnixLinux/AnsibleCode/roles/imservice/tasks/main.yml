@@ -1,0 +1,12 @@
+---
+# tasks file for imservice
+- name: install Pidgin, the universal chat client
+  yum: 
+    name: '{{ item.name }}'
+    state: '{{ item.state }}'
+  with_items: 
+    - { name: 'pidgin', state: 'latest' }
+
+
+# Resources: 
+# http://stephenmrowe.blogspot.com/2015/06/installing-pidgin-in-centos-7.html

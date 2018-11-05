@@ -9,12 +9,12 @@
 #     - { state: "present", url: "http://www.webmin.com/jcameron-key.asc" }
 #   tags: rpm_key add
 
-- name: import jcameron-key.asc
-  command: "{{ item }}"
-  warn: no
-  with_items:
-    - wget http://www.webmin.com/jcameron-key.asc
-    - rpm --import jcameron-key.asc
+# - name: import jcameron-key.asc
+#   command: "{{ item }}"
+#   warn: no
+#   with_items:
+#     - wget http://www.webmin.com/jcameron-key.asc
+#     - rpm --import jcameron-key.asc
 
 - name: create webmin.repo 
   template:

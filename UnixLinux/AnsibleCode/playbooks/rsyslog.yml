@@ -1,1 +1,4 @@
-# comment 
+---
+- hosts: venom
+  roles:
+    - rsyslog
