@@ -14,20 +14,14 @@
     - { name: 'bacula-client', state: 'latest' }
 
 
-yum -y install mariadb mariadb-server bacula-director-mysql bacula-console 
-yum -y install bacula-client bacula-storage-mysql mysql-server mysql-devel
 
-
-su - postgres
-/opt/bacula/scripts/create_postgresql_database
-/opt/bacula/scripts/make_postgresql_tables
-/opt/bacula/scripts/grant_postgresql_privileges
-exit
 
 
 
 # Resources: 
-# https://www.digitalocean.com/community/tutorials/how-to-install-bacula-server-on-centos-7
-
-
-https://blog.bacula.org/whitepapers/CommunityInstallationGuide.pdf
+#https://www.digitalocean.com/community/tutorials/how-to-install-bacula-server-on-centos-7
+#https://blog.bacula.org/whitepapers/CommunityInstallationGuide.pdf
+### THIS WORKS 
+# http://www.chriscouture.com/installing-bacula-webmin-bacula-webon-centos-7/
+# WEB GUI
+# http://docs.bacula-web.org/en/v8.0.1/02_install/requirements.html#install-requirements

@@ -10,13 +10,15 @@
 # - import_playbook: rsyslog.yml
 # - import_playbook: mail.yml
 
-- import_playbook: bacula.yml
+#- import_playbook: bacula.yml   --Working
+# - import_playbook: imservice.yml  --Working
+
+
 
 # - import_playbook: glassfish
 # - import_playbook: ftp
-# - import_playbook: imservice.yml
-# - import_playbook: tomcat
-# - import_playbook: java11
+ - import_playbook: tomcat
+ - import_playbook: java11
 # - import_playbook: ntp
 
 
