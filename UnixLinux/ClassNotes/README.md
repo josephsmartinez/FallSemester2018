@@ -573,3 +573,46 @@ http://surf.ml.seikei.ac.jp/~nakano/dump-restore/dump-restore-mini-HOWTO.en.html
 Cable, DSL
 - Internet access for companies
 DS1, T1
+
+# Networking Linux and UNIX
+DHCP - four way handshake
+
+DHCP discover
+	broadcast
+DHCP offer
+	uni-cast
+DHCP Request
+  broadcast
+DHCP-ACT
+  unicast
+
+Networking Commands
+```
+ifup
+ifdown
+ifconfig
+trasroute
+ping
+arp
+		etc...
+```
+A name server is a computer application that implements a network service for providing responses to queries against a directory service. It translates an often humanly meaningful, text-based identifier to a system-internal, often numeric identification or addressing component.
+
+/etc/sysconfig/network
+/etc/sysconfig/network-scripts
+/etc/resolve.conf
+/etc/services
+
+```
+setbool -a | grep ftp
+```
+https://linux.die.net/man/8/setsebool
+
+DNS Mapping and configuration
+Max Record
+Zones
+
+Jailing to prevent users from escalating privileges
+(FTP set up requires this for semester project)
+
+Blocking and Addressing ip address from routing rules

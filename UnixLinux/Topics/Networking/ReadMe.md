@@ -11,3 +11,6 @@ https://www.serverlab.ca/tutorials/linux/administration-linux/how-to-configure-c
 ARP
 `arp -s hostname hw_addr`
 http://users.cs.fiu.edu/~esj/cgs4285/class11.html
+
+Bridging the Virtual Box machine with the host
+https://coderwall.com/p/yx23qw/access-your-virtualbox-guest-localhost-from-your-host-os
