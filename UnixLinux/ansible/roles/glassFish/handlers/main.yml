@@ -1,5 +1,0 @@
----
-# handlers file for glassFish
-
-- name: 
-  command: firewall-cmd --reload 
